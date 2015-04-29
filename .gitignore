@@ -1,0 +1,18 @@
+## ignore logs
+logs/*
+!logs/.keep
+
+## ignore backup
+backup
+
+## ignore vitual hosts
+.nginx/etc/nginx/hosts/*
+!.nginx/etc/nginx/hosts/template-conf
+
+## ignore phpstopm metadata
+.idea
+
+## ignore www
+www/*
+!www/.keep
+

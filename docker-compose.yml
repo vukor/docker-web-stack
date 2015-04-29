@@ -1,0 +1,34 @@
+mysql:
+  build: .mysql55/.
+  command: /usr/libexec/mysqld
+  volumes:
+    - .mysql55/etc/my.cnf:/etc/my.cnf
+    - logs:/var/log/mysql
+    - backup:/backup
+  environment:
+    - MYSQL_ROOT_PASSWORD=test
+    - MYSQL_LOGIN=test
+    - MYSQL_PASSWORD=test
+php:
+  build: .php54/.
+  command: /usr/sbin/php-fpm --nodaemonize
+  volumes:
+    - .php54/etc/php-fpm.conf:/etc/php-fpm.conf
+    - .php54/etc/php-fpm.d/:/etc/php-fpm.d/
+    - .php54/etc/php.ini:/etc/php.ini
+    - www:/home/dev/www
+    - logs:/home/dev/logs
+  links:
+    - mysql
+nginx:
+  build: .nginx/.
+  command: service nginx start
+  ports:
+   - "80:80"
+  volumes:
+   - .nginx/etc/nginx/hosts:/etc/nginx/hosts
+   - www:/home/dev/www
+   - logs:/home/dev/logs
+  links:
+   - php
+
