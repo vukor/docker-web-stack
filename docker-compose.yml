@@ -22,7 +22,7 @@ php:
     - mysql
 nginx:
   build: .nginx/.
-  command: service nginx start
+  command: /usr/sbin/nginx
   ports:
    - "80:80"
   volumes:
