@@ -32,11 +32,11 @@ How it's work
 
 7. For connect to mysql server run:
     
-    `` docker run -ti --link dockerwebstack_mysql_1:mysql --rm=true vukor/mysql55 bash -c 'exec mysql -p$MYSQL_ENV_MYSQL_PASSWORD -h$MYSQL_PORT_3306_TCP_ADDR' ``
+    `` docker run -ti --link dockerwebstack_mysql_1:mysql --rm=true vukor/mysql55 bash -c 'exec mysql -p$MYSQL_ENV_MYSQL_ROOT_PASSWORD -h$MYSQL_PORT_3306_TCP_ADDR' ``
 
 8. For create/restore db save sql-commands in ./backup/run.sql and run:
     
-    `` docker run -ti -v `pwd`/backup:/backup --link dockerwebstack_mysql_1:mysql --rm=true vukor/mysql55 bash -c 'exec cat /backup/run.sql | mysql -p$MYSQL_ENV_MYSQL_PASSWORD -h$MYSQL_PORT_3306_TCP_ADDR' ``
+    `` docker run -ti -v `pwd`/backup:/backup --link dockerwebstack_mysql_1:mysql --rm=true vukor/mysql55 bash -c 'exec cat /backup/run.sql | mysql -p$MYSQL_ENV_MYSQL_ROOT_PASSWORD -h$MYSQL_PORT_3306_TCP_ADDR' ``
 
 
 share dirs
