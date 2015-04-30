@@ -1,0 +1,43 @@
+docker-web-stack
+===========
+
+This is docker projects for build web containers
+
+How it's work
+===========
+
+1. Download project:
+
+    ``$ git clone https://vukor@github.com/vukor/docker-web-stack.git ~/docker``
+
+2. Install docker and docker-compose on your system
+
+3. Optional: change the docker-compose.yml. For example, you can change MYSQL_ROOT_PASSWORD or change php version (default php 5.6).
+
+4. Put web files in www/YOUR-PROJECT/, create virtual host .nginx/etc/nginx/hosts/YOUR-PROJECT.conf
+
+5. Create and start containers:
+    `` cd ~/docker/ ``
+    `` docker-compose -d up ``
+
+6. For stop, start, restart containers run:
+    `` docker-compose stop ``
+    `` docker-compose start ``
+    `` docker-compose restart ``
+
+7. For connect to mysql server run:
+    `` docker run -ti --link dockerwebstack_mysql_1:mysql --rm=true vukor/mysql55 bash -c 'exec mysql -p$MYSQL_ENV_MYSQL_PASSWORD -h$MYSQL_PORT_3306_TCP_ADDR' ``
+
+8. For create/restore db save sql-commands in ./backup/run.sql and run:
+    `` docker run -ti -v `pwd`/backup:/backup --link dockerwebstack_mysql_1:mysql --rm=true vukor/mysql55 bash -c 'exec cat /backup/run.sql | mysql -p$MYSQL_ENV_MYSQL_PASSWORD -h$MYSQL_PORT_3306_TCP_ADDR' ``
+
+
+share dirs
+===========
+
+``.nginx/etc, .mysql5x/etc, .php5x/etc - config files``
+
+``www - web files``
+
+``logs - app logs``
+

@@ -3,7 +3,8 @@ logs/*
 !logs/.keep
 
 ## ignore backup
-backup
+backup/*
+!backup/.keep
 
 ## ignore vitual hosts
 .nginx/etc/nginx/hosts/*
