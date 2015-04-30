@@ -1,5 +1,5 @@
 mysql:
-  build: .mysql55/.
+  image: vukor/mysql55
   command: /usr/libexec/mysqld
   volumes:
     - .mysql55/etc/my.cnf:/etc/my.cnf
@@ -10,18 +10,18 @@ mysql:
     - MYSQL_LOGIN=test
     - MYSQL_PASSWORD=test
 php:
-  build: .php54/.
+  image: vukor/php56
   command: /usr/sbin/php-fpm --nodaemonize
   volumes:
-    - .php54/etc/php-fpm.conf:/etc/php-fpm.conf
-    - .php54/etc/php-fpm.d/:/etc/php-fpm.d/
-    - .php54/etc/php.ini:/etc/php.ini
+    - .php56/etc/php-fpm.conf:/etc/php-fpm.conf
+    - .php56/etc/php-fpm.d/:/etc/php-fpm.d/
+    - .php56/etc/php.ini:/etc/php.ini
     - www:/home/dev/www
     - logs:/home/dev/logs
   links:
     - mysql
 nginx:
-  build: .nginx/.
+  image: vukor/nginx
   command: /usr/sbin/nginx
   ports:
    - "80:80"
