@@ -8,16 +8,16 @@ How it's work
 
 1. Download project:
 
-    ``$ git clone https://vukor@github.com/vukor/docker-web-stack.git ~/docker``
+    ``$ git clone https://vukor@github.com/vukor/docker-web-stack.git``
 
 2. Install docker and docker-compose on your system
 
-3. Optional: change the docker-compose.yml. For example, you can change MYSQL_ROOT_PASSWORD or change php version (default php 5.6).
+3. [optional] Change the docker-compose.yml. For example, you can change MYSQL_ROOT_PASSWORD or change php version (default php 5.6).
 
 4. Put web files in www/YOUR-PROJECT/, create virtual host .nginx/etc/nginx/hosts/YOUR-PROJECT.conf
 
 5. Create and start containers:
-    `` cd ~/docker/ ``
+    `` cd docker-web-stack/ ``
     `` docker-compose -d up ``
 
 6. For stop, start, restart containers run:
