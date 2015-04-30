@@ -8,7 +8,7 @@ RUN yum install wget -y \
 	&& wget http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm \
 	&& wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm \
 	&& rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm \
-	&& rm -f remi-release-6*.rpm epel-release-6*.rpm \
+	&& rm -f remi-release-6*.rpm epel-release-6*.rpm
 
 COPY ./etc/yum.repos.d/remi.repo /etc/yum.repos.d/remi.repo
 
