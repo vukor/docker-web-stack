@@ -20,7 +20,7 @@ How it's work
     
     `` cd docker-web-stack/ ``
     
-    `` docker-compose -d up ``
+    `` docker-compose up -d ``
 
 6. For stop, start, restart containers run:
     
