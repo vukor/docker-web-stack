@@ -24,7 +24,7 @@ How it's work
 
     `` ./bin/create.prj.sh PRJNAME ``
 
-After that put web files to dir ./www/PRJNAME/www/
+    After that put web files to dir ./www/PRJNAME/www/
 
 6. For stop, start, restart containers run:
     
