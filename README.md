@@ -14,13 +14,16 @@ How it's work
 
 3. [ OPTIONAL ] Change the docker-compose.yml. For example, you can change MYSQL_ROOT_PASSWORD or change php version (default php 5.6).
 
-4. Put web files in www/YOUR-PROJECT/, create virtual host .nginx/etc/nginx/hosts/YOUR-PROJECT.conf
+4. Create and start containers:
+    
+    `` cd docker-web-stack/
+    docker-compose up -d ``
 
-5. Create and start containers:
-    
-    `` cd docker-web-stack/ ``
-    
-    `` docker-compose up -d ``
+5. Create your first virtual host:
+
+    `` ./bin/create.prj.sh PRJNAME ``
+
+After that put web files to dir ./www/PRJNAME/www/
 
 6. For stop, start, restart containers run:
     
