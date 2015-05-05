@@ -16,8 +16,8 @@ How it's work
 
 4. Create and start containers:
     
-    `` cd docker-web-stack/
-    docker-compose up -d ``
+    `` cd docker-web-stack/ ``
+    `` docker-compose up -d ``
 
 5. Create your first virtual host:
 
