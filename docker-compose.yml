@@ -10,12 +10,12 @@ mysql:
     - MYSQL_LOGIN=test
     - MYSQL_PASSWORD=test
 php:
-  image: vukor/php56
+  image: vukor/php54
   command: /usr/sbin/php-fpm --nodaemonize
   volumes:
-    - .php56/etc/php-fpm.conf:/etc/php-fpm.conf
-    - .php56/etc/php-fpm.d/:/etc/php-fpm.d/
-    - .php56/etc/php.ini:/etc/php.ini
+    - .php54/etc/php-fpm.conf:/etc/php-fpm.conf
+    - .php54/etc/php-fpm.d/:/etc/php-fpm.d/
+    - .php54/etc/php.ini:/etc/php.ini
     - www:/home/dev/www
     - logs:/home/dev/logs
   links:
