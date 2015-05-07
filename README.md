@@ -40,11 +40,11 @@ How it's work
 
 7. For connect to mysql server run:
     
-    `` docker-compose run --rm mysql bash -c 'exec mysql -p$MYSQL_ENV_MYSQL_ROOT_PASSWORD -h$MYSQL_PORT_3306_TCP_ADDR' ``
+    `` docker-compose run --rm mysql bash -c 'exec mysql -u $MYSQL_LOGIN -p$MYSQL_PASSWORD -h mysql' ``
 
 8. For create/restore db save sql-commands in ./backup/run.sql and run:
     
-    `` docker-compose run --rm mysql bash -c 'exec cat /backup/run.sql | mysql -p$MYSQL_ENV_MYSQL_ROOT_PASSWORD -h$MYSQL_PORT_3306_TCP_ADDR' ``
+    `` docker-compose run --rm mysql bash -c 'exec cat /backup/run.sql | mysql -u $MYSQL_LOGIN -p$MYSQL_PASSWORD -h mysql' ``
 
 
 Share dirs
