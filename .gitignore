@@ -9,6 +9,7 @@ backup/*
 ## ignore vitual hosts
 .nginx/etc/nginx/hosts/*
 !.nginx/etc/nginx/hosts/template-conf
+!.nginx/etc/nginx/hosts/template-v5-conf
 
 ## ignore phpstopm metadata
 .idea
