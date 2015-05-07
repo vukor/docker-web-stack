@@ -3,7 +3,9 @@
 """
 Usage: create.prj.py [-v5] PRJNAME
 Args:
-	-v5: documentroot is www/PRJNAME/www, otherwise is www/PRJNAME
+	-v5: documentroot is htdocs/PRJNAME/www, otherwise is htdocs/PRJNAME
+
+Working on python version 2
 """
 
 import sys
@@ -52,10 +54,10 @@ if os.path.isfile(relative_prj_host):
 
 ## create nginx config
 if v5 == 1:
-	document_root = "../www/%s/www/" % prj_name
+	document_root = "../htdocs/%s/www/" % prj_name
 	s = open('../.nginx/etc/nginx/hosts/template-v5-conf', 'r').read()
 else:
-	document_root = "../www/%s/" % prj_name
+	document_root = "../htdocs/%s/" % prj_name
 	s = open('../.nginx/etc/nginx/hosts/template-conf', 'r').read()
 
 s = s.replace('PRJ_NAME', prj_name)

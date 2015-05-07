@@ -22,11 +22,11 @@ How it's work
 
 5. Create your first virtual host:
 
-    `` ./bin/create.prj.py PRJNAME `` (then documentroot is ./www/PRJNAME/)
+    `` ./bin/create.prj.py PRJNAME `` (then documentroot is ./htdocs/PRJNAME/)
 
 	or
 
-    `` ./bin/create.prj.py -v5 PRJNAME `` (then documentroot is ./www/PRJNAME/www/)
+    `` ./bin/create.prj.py -v5 PRJNAME `` (then documentroot is ./htdocs/PRJNAME/www/)
 
     After that put web files to documentroot
 
@@ -52,7 +52,7 @@ Share dirs
 
 ``.nginx/etc, .mysql5x/etc, .php5x/etc - config files``
 
-``www - web files``
+``htdocs - web files``
 
 ``logs - app logs``
 

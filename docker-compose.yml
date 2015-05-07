@@ -18,7 +18,7 @@ php:
     - .php54/etc/php-fpm.conf:/etc/php-fpm.conf
     - .php54/etc/php-fpm.d/:/etc/php-fpm.d/
     - .php54/etc/php.ini:/etc/php.ini
-    - www:/home/dev/www
+    - htdocs:/home/dev/htdocs
     - logs:/home/dev/logs
   links:
     - mysql
@@ -29,7 +29,7 @@ nginx:
    - "80:80"
   volumes:
    - .nginx/etc/nginx/hosts:/etc/nginx/hosts
-   - www:/home/dev/www
+   - htdocs:/home/dev/htdocs
    - logs:/home/dev/logs
   links:
    - php
