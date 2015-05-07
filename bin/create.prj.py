@@ -67,7 +67,7 @@ f.close()
 os.makedirs(document_root)
 
 ## finish
-print 'Host {} succesfully created.\nYour config is {}\nYour documentroot is {}\nNow run: docker-compose restart'.format(prj_name, os.path.normpath(os.path.realpath(relative_prj_host)), os.path.normpath(os.path.realpath(document_root)))
+print 'Host {} succesfully created.\nYour config is {}\nYour documentroot is {}\nNow run: docker-compose restart nginx'.format(prj_name, os.path.normpath(os.path.realpath(relative_prj_host)), os.path.normpath(os.path.realpath(document_root)))
 
 sys.exit(0)
 
