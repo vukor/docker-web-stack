@@ -22,11 +22,11 @@ How it's work
 
 5. Create your first virtual host:
 
-    `` ./bin/create.prj.py PRJNAME `` (documentroot is ./www/PRJNAME/)
+    `` ./bin/create.prj.py PRJNAME `` (then documentroot is ./www/PRJNAME/)
 
 	or
 
-    `` ./bin/create.prj.py -v5 PRJNAME `` (documentroot is ./www/PRJNAME/www/)
+    `` ./bin/create.prj.py -v5 PRJNAME `` (then documentroot is ./www/PRJNAME/www/)
 
     After that put web files to documentroot
 
