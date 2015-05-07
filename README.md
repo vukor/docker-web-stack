@@ -22,9 +22,13 @@ How it's work
 
 5. Create your first virtual host:
 
-    `` ./bin/create.prj.sh PRJNAME ``
+    `` ./bin/create.prj.py PRJNAME `` (documentroot is ./www/PRJNAME/)
 
-    After that put web files to dir ./www/PRJNAME/www/
+	or
+
+    `` ./bin/create.prj.py -v5 PRJNAME `` (documentroot is ./www/PRJNAME/www/)
+
+    After that put web files to documentroot
 
 6. For stop, start, restart containers run:
     
