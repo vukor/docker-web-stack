@@ -3,8 +3,6 @@ postfix:
 mysql:
   image: vukor/mysql55
   command: /usr/libexec/mysqld
-  ports:
-   - "3306:3306"
   volumes:
     - .mysql55/etc/my.cnf:/etc/my.cnf
     - logs:/var/log/mysql

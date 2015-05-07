@@ -1,11 +1,13 @@
 #!/bin/sh
 
-if $# == 2
-then
-	echo "v1-4"
-fi
-exit 1
+## check on right argument
+prjname=$1
 
+if test -z ${prjname}
+then
+	echo "You forgot set prj name! Exiting.. \nUse: create.prj.sh PRJNAME"
+	exit 1
+fi
 
 ## create virtual host
 workdir=$(dirname $0)

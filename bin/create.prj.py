@@ -16,7 +16,8 @@ if '-h' in sys.argv or '--help' in sys.argv:
 
 if len(sys.argv) == 2:
 	## go to current dir with script
-	os.chdir(os.path.dirname(sys.argv[0]))
+	workdir = os.path.dirname(sys.argv[0])
+	os.chdir(workdir)
 
 	## create variables
 	prj_name = sys.argv[1]
