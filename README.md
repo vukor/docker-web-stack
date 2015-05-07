@@ -32,11 +32,11 @@ How it's work
 
 6. For stop, start, restart containers run:
     
-    `` docker-compose stop ``
+    `` docker-compose stop [container]``
     
-    `` docker-compose start ``
+    `` docker-compose start [container]``
     
-    `` docker-compose restart ``
+    `` docker-compose restart [container]``
 
 7. For connect to mysql server run:
     
@@ -47,7 +47,7 @@ How it's work
     `` docker run -ti -v `pwd`/backup:/backup --link dockerwebstack_mysql_1:mysql --rm=true vukor/mysql55 bash -c 'exec cat /backup/run.sql | mysql -p$MYSQL_ENV_MYSQL_ROOT_PASSWORD -h$MYSQL_PORT_3306_TCP_ADDR' ``
 
 
-share dirs
+Share dirs
 ===========
 
 ``.nginx/etc, .mysql5x/etc, .php5x/etc - config files``
@@ -55,4 +55,10 @@ share dirs
 ``www - web files``
 
 ``logs - app logs``
+
+
+Useful links
+============
+  - http://docs.docker.com/compose/
+  - https://github.com/docker/compose/blob/master/docs/index.md
 
