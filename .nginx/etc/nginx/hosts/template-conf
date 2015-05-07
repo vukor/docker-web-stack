@@ -6,8 +6,8 @@ server {
 	access_log /home/dev/logs/PRJ_NAME.access.log  main;
 	error_log /home/dev/logs/PRJ_NAME.error.log  warn;
 
-	root  /home/dev/www/PRJ_NAME/www/;
-	index  index.php;
+	root  /home/dev/www/PRJ_NAME/;
+	index  index.php index.html index.htm;
 
 	## rewrite rules
 	location / {
