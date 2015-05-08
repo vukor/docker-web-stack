@@ -32,7 +32,7 @@ VOLUME ["/etc/php-fpm.d/"]
 
 ## web
 VOLUME ["/home/dev/logs/"]
-VOLUME ["/home/dev/www/"]
+VOLUME ["/home/dev/htdocs/"]
 
 ### main
 CMD ["/usr/sbin/php-fpm","--nodaemonize"]

@@ -20,7 +20,7 @@ VOLUME ["/etc/nginx/hosts/"]
 
 ## web
 VOLUME ["/home/dev/logs/"]
-VOLUME ["/home/dev/www/"]
+VOLUME ["/home/dev/htdocs/"]
 
 ### main
 CMD ["/usr/sbin/nginx"]
