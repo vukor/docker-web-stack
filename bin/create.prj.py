@@ -45,11 +45,11 @@ elif len(sys.argv) == 3:
 os.chdir(os.path.dirname(sys.argv[0]))
 
 ## create variables
-relative_prj_host = "../.nginx/etc/nginx/hosts/%s.conf" % prj_name
+relative_prj_host = "../.nginx/etc/nginx/hosts/{}.conf".format(prj_name)
 
 ## exit if virtual host already exists
 if os.path.isfile(relative_prj_host):
-	print "prj host %s already exists! Exiting.." % prj_name
+	print "prj host {} already exists! Exiting..".format(prj_name)
 	sys.exit(2)
 
 ## exit if documentroot already exists
@@ -59,10 +59,10 @@ if os.path.isdir('../htdocs/'+prj_name):
 
 ## create nginx config
 if v5 == 1:
-	document_root = "../htdocs/%s/www/" % prj_name
+	document_root = "../htdocs/{}/www/".format(prj_name)
 	s = open('../.nginx/etc/nginx/hosts/template-v5-conf', 'r').read()
 else:
-	document_root = "../htdocs/%s/" % prj_name
+	document_root = "../htdocs/{}/".format(prj_name)
 	s = open('../.nginx/etc/nginx/hosts/template-conf', 'r').read()
 
 s = s.replace('PRJ_NAME', prj_name)
@@ -74,7 +74,7 @@ f.close()
 os.makedirs(document_root)
 
 ## finish
-print 'Host {} succesfully created.\nYour config is {}\nYour documentroot is {}\nNow run: docker-compose restart nginx'.format(prj_name, os.path.normpath(os.path.realpath(relative_prj_host)), os.path.normpath(os.path.realpath(document_root)))
+print 'Vhost {} is created:\n\t- your config is {}\n\t- your documentroot is {}\n1. run: docker-compose restart nginx\n2. open http://{}/'.format(prj_name,os.path.normpath(os.path.realpath(relative_prj_host)), os.path.normpath(os.path.realpath(document_root)), prj_name)
 
 sys.exit(0)
 
