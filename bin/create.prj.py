@@ -52,6 +52,11 @@ if os.path.isfile(relative_prj_host):
 	print "prj host %s already exists! Exiting.." % prj_name
 	sys.exit(2)
 
+## exit if documentroot already exists
+if os.path.isdir('../htdocs/'+prj_name):
+	print 'documentroot {} already exists! Exiting..'.format(prj_name)
+	sys.exit(2)
+
 ## create nginx config
 if v5 == 1:
 	document_root = "../htdocs/%s/www/" % prj_name
