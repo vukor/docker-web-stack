@@ -1,7 +1,7 @@
 docker-web-stack
 ===========
 
-This is docker projects for build web containers
+This is docker projects for run web apps as containers
 
 How it's work
 ===========
