@@ -1,12 +1,12 @@
 server {
 	listen       80;
-	server_name  PRJ_NAME;
+	server_name  HOST_NAME;
 
 	charset utf8;
-	access_log /home/dev/logs/PRJ_NAME.access.log  main;
-	error_log /home/dev/logs/PRJ_NAME.error.log  warn;
+	access_log /home/dev/logs/HOST_NAME.access.log  main;
+	error_log /home/dev/logs/HOST_NAME.error.log  warn;
 
-	root  /home/dev/htdocs/PRJ_NAME/;
+	root  /home/dev/htdocs/HOST_NAME/;
 	index  index.php index.html index.htm;
 
 	## rewrite rules
