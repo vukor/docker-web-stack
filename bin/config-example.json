@@ -1,0 +1,5 @@
+{
+    "host_name": "{PRJ_NAME}.x",
+    "dir_name": "{PRJ_NAME}.x,
+    "git_access": "ssh://URL/"
+}
