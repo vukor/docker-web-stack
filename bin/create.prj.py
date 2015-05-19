@@ -11,7 +11,7 @@ import subprocess
 parser = argparse.ArgumentParser("Create and init web project. Working on python 2.x")
 parser.add_argument('--config','-c', type=file, default='config.json', help='config file (default - config.json)')
 parser.add_argument('--version-lib','-v', type=int, choices=[4, 5], default=4, help='choose adx lib version (default - 4)')
-parser.add_argument('--init-script','-i', type=str, choices=['adx', 'wp'], help='run php script from init-scripts/')
+parser.add_argument('--init-script','-i', type=str, choices=['adx', 'wp'], help='after creating web project run adx.php or wp.php from init-scripts/')
 parser.add_argument('project', type=str)
 args = parser.parse_args()
 
@@ -59,13 +59,16 @@ f.close()
 if not(os.path.isdir(document_root)):
     os.makedirs(document_root)
 
-## run init-scripts
+## run init-script
 if not(args.init_script == None):
     subprocess.call(["php", "init-scripts/{}.php".format(args.init_script)])
-sys.exit(2)
 
 ## finish
-print 'Vhost {} is created:\n\t- your config is {}\n\t- your documentroot is {}\n1. run: docker-compose restart nginx\n2. open http://{}/'.format(p,os.path.normpath(os.path.realpath(relative_prj_host)), os.path.normpath(os.path.realpath(document_root)), host_name)
+print "==============="
+os.chdir('../')
+subprocess.call(["docker-compose", "restart"])
+print "==============="
+print 'web project {} is created:\n\t- your config is {}\n\t- your documentroot is {}\nNow open http://{}/'.format(p,os.path.normpath(os.path.realpath(relative_prj_host)), os.path.normpath(os.path.realpath(document_root)), host_name)
 
 sys.exit(0)
 
