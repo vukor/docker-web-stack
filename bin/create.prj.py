@@ -38,7 +38,8 @@ if os.path.isfile(relative_prj_host):
 ## if documentroot already exists
 if not(os.path.isdir('../htdocs/'+p)):
     if 'git_access' in f:
-        git.Git().clone(config["git_access"], '../htdocs/'+dir_name)
+        repo = config["git_access"].replace("{PRJ_NAME}",p)
+        git.Git().clone(repo,'../htdocs/'+dir_name)
     else:
         os.makedirs('../htdocs/'+dir_name)
 
