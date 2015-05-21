@@ -7,6 +7,9 @@ import git
 import argparse
 import subprocess
 
+## go to current dir with script
+os.chdir(os.path.dirname(sys.argv[0]))
+
 ## parse args
 parser = argparse.ArgumentParser("Create and init web project. Working on python 2.x")
 parser.add_argument('--config','-c', type=file, default='config.json', help='config file (default - config.json)')
@@ -21,8 +24,6 @@ v = args.version_lib
 f = args.config.read()
 
 ### main
-## go to current dir with script
-os.chdir(os.path.dirname(sys.argv[0]))
 
 ## get prj_host, config values
 config = json.loads(f)
