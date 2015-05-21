@@ -44,13 +44,14 @@ if not(os.path.isdir('../htdocs/'+p)):
 
 ## create nginx config
 if v == 5:
-	document_root = "../htdocs/{}/www/".format(host_name)
+	document_root = "../htdocs/{}/www/".format(p)
 	s = open('../.nginx/etc/nginx/hosts/template-v5-conf', 'r').read()
 else:
-	document_root = "../htdocs/{}/".format(host_name)
+	document_root = "../htdocs/{}/".format(p)
 	s = open('../.nginx/etc/nginx/hosts/template-conf', 'r').read()
 
 s = s.replace('HOST_NAME', host_name)
+s = s.replace('PRJ_NAME', p)
 f = open(relative_prj_host, 'w')
 f.write(s)
 f.close()
