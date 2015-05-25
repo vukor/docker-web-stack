@@ -1,5 +1,24 @@
 {
-    "host_name": "{PRJ_NAME}.x",
-    "dir_name": "{PRJ_NAME}.x",
-    "git_access": "url"
+    "default": {
+        "host_name": "PRJ_NAME.vukor",
+        "dir_name": "PRJ_NAME",
+        "git_access": "url/PRJ_NAME",
+        "config": "template-conf",
+        "init_script": "adx.php"
+    },
+    "v5": {
+        "host_name": "PRJ_NAME.vukor",
+        "dir_name": "PRJ_NAME",
+        "git_access": "url/PRJ_NAME",
+        "config": "template-v5-conf",
+        "init_script": "adx.php"
+    },
+    "wp": {
+        "host_name": "PRJ_NAME.vukor",
+        "dir_name": "PRJ_NAME",
+        "git_access": "url/PRJ_NAME",
+        "config": "template-conf",
+        "init_script": "wp.php"
+    }
 }
+
