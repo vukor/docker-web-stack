@@ -112,7 +112,7 @@ def main():
     ## init project
     if not(os.path.isdir('../htdocs/{}'.format(p))):
         if not(git_access == None):
-            clone_repo(git_access,"../htdocs/{}".format(dir_name))
+            clone_repo(git_access,"../htdocs/{}".format(p))
         else:
             os.makedirs('../htdocs/{}'.format(dir_name))
 
