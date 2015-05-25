@@ -30,10 +30,11 @@ def parse_config(file,profile,project_name):
     if not('config' in config[profile]):
         print "Not found profile in config! Exiting.."
         sys.exit(2)
-    if not('init_script' in config[profile]):
-        print "Not found init_script in config! Exiting.."
-        sys.exit(2)
-    if 'git_access' in config[profile]:
+    if 'init_script' in config[profile] and config[profile]["init_script"] != "":
+        init_script = config[profile]["init_script"].replace("PRJ_NAME", project_name)
+    else:
+        init_script = None
+    if 'git_access' in config[profile] and config[profile]["git_access"] != "":
         git_access = config[profile]["git_access"].replace("PRJ_NAME", project_name)
     else:
         git_access = None
@@ -43,7 +44,7 @@ def parse_config(file,profile,project_name):
         config[profile]["dir_name"].replace("PRJ_NAME", project_name),
         git_access,
         config[profile]["config"].replace("PRJ_NAME", project_name),
-        config[profile]["init_script"].replace("PRJ_NAME", project_name)
+        init_script
     )
 
 def create_virtual_host(templ_nginx_config,nginx_config,profile,project_name,host_name):
@@ -119,7 +120,8 @@ def main():
     document_root = create_virtual_host(templ_prj_host,prj_host,profile,p,host_name)
 
     ## run init-script
-    subprocess.call(["php", "init-scripts/{}".format(init_script)])
+    if not(init_script == None):
+        subprocess.call(["php", "init-scripts/{}".format(init_script)])
 
     ## finish
     print "==============="
