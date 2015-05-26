@@ -6,7 +6,7 @@ MAINTAINER Anton Bugreev <anton@bugreev.ru>
 ## needs to install php 5.4
 RUN yum install wget -y && wget -q -O - https://www.atomicorp.com/installers/atomic | sed 's/!\ $NON_INT/$NON_INT/' | sh
 
-### build libiconv 1.x for php-iconv
+### build, configure libiconv 1.x (needs for php)
 RUN yum install tar gcc -y && \
     cd /tmp && \
     wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz && \
@@ -14,7 +14,8 @@ RUN yum install tar gcc -y && \
     cd ./libiconv-1.14/ && \
     ./configure --prefix=/usr/local && \
     make && make install && \
-    cd /tmp && rm -rf /tmp/libiconv*
+    cd /tmp && rm -rf /tmp/libiconv* && \
+    echo "export LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so" >> /etc/bashrc
 
 ### create, configure user dev
 RUN useradd dev -u 1000
@@ -24,7 +25,6 @@ RUN yum install php php-cli php-mysql php-mbstring php-gd php-fpm php-mssql php-
 COPY ./etc/php-fpm.conf /etc/php-fpm.conf
 COPY ./etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf
 COPY ./etc/php.ini /etc/php.ini
-RUN echo "export LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so" >> /home/dev/.bashrc
 
 ### etc
 ## set timezone

@@ -1,4 +1,4 @@
-## Version: 0.1
+## Version: 0.2
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
@@ -9,10 +9,20 @@ RUN yum install wget -y \
 	&& wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm \
 	&& rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm \
 	&& rm -f remi-release-6*.rpm epel-release-6*.rpm
-
 COPY ./etc/yum.repos.d/remi.repo /etc/yum.repos.d/remi.repo
 
-### create user dev
+### build, configure libiconv 1.x (needs for php)
+RUN yum install tar gcc -y && \
+    cd /tmp && \
+    wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz && \
+    tar -xvzf ./libiconv-1.14.tar.gz && \
+    cd ./libiconv-1.14/ && \
+    ./configure --prefix=/usr/local && \
+    make && make install && \
+    cd /tmp && rm -rf /tmp/libiconv* && \
+    echo "export LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so" >> /etc/bashrc
+
+### create, configure user dev
 RUN useradd dev -u 1000
 
 ### php
@@ -34,9 +44,6 @@ VOLUME ["/etc/php-fpm.d/"]
 VOLUME ["/home/dev/logs/"]
 VOLUME ["/home/dev/htdocs/"]
 
-### main
-CMD ["/usr/sbin/php-fpm","--nodaemonize"]
-
-## allow ports 
+## allow ports
 EXPOSE 9000
 
