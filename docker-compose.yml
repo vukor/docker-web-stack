@@ -23,6 +23,7 @@ php:
   links:
     - mysql
     - postfix
+  command: sh -c "LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so /usr/sbin/php-fpm --nodaemonize"
 nginx:
   image: vukor/nginx
   ports:

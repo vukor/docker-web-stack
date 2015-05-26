@@ -1,4 +1,4 @@
-## Version: 0.4
+## Version: 0.5
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
@@ -6,7 +6,17 @@ MAINTAINER Anton Bugreev <anton@bugreev.ru>
 ## needs to install php 5.4
 RUN yum install wget -y && wget -q -O - https://www.atomicorp.com/installers/atomic | sed 's/!\ $NON_INT/$NON_INT/' | sh
 
-### create user dev
+### build libiconv 1.x for php-iconv
+RUN yum install tar gcc -y && \
+    cd /tmp && \
+    wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz && \
+    tar -xvzf ./libiconv-1.14.tar.gz && \
+    cd ./libiconv-1.14/ && \
+    ./configure --prefix=/usr/local && \
+    make && make install && \
+    cd /tmp && rm -rf /tmp/libiconv*
+
+### create, configure user dev
 RUN useradd dev -u 1000
 
 ### php
@@ -14,6 +24,7 @@ RUN yum install php php-cli php-mysql php-mbstring php-gd php-fpm php-mssql php-
 COPY ./etc/php-fpm.conf /etc/php-fpm.conf
 COPY ./etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf
 COPY ./etc/php.ini /etc/php.ini
+RUN echo "export LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so" >> /home/dev/.bashrc
 
 ### etc
 ## set timezone
@@ -28,9 +39,6 @@ VOLUME ["/etc/php-fpm.d/"]
 VOLUME ["/home/dev/logs/"]
 VOLUME ["/home/dev/htdocs/"]
 
-### main
-CMD ["/usr/sbin/php-fpm","--nodaemonize"]
-
-## allow ports 
+## allow ports
 EXPOSE 9000
 
