@@ -10,7 +10,7 @@ def parse_arguments():
     import argparse
     parser = argparse.ArgumentParser("Create and init web project. Working on python 2.x")
     parser.add_argument('--config','-c', type=file, default='config.json', help='config file (default - config.json)')
-    parser.add_argument('--profile','-p', type=str, choices=['default', 'v5', 'wp'], default='default', help='choose profile from config')
+    parser.add_argument('--profile','-p', type=str, default='default', help='choose profile from config')
     parser.add_argument('project', type=str)
     
     return parser.parse_args()
