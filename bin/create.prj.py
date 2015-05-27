@@ -24,30 +24,40 @@ def parse_config(file,profile,project_name):
     if not('host_name' in config[profile]):
         print "Not found host_name in config! Exiting.."
         sys.exit(2)
+    else:
+        host_name = config[profile]["host_name"].replace("PRJ_NAME", project_name)
+    
     if not('dir_name' in config[profile]):
         print "Not found dir_name in config! Exiting.."
         sys.exit(2)
-    if not('config' in config[profile]):
+    else:
+        dir_name = config[profile]["dir_name"].replace("PRJ_NAME",project_name)
+    
+    if not('template_ngx' in config[profile]):
         print "Not found profile in config! Exiting.."
         sys.exit(2)
+    else:
+        template_ngx = "../.nginx/etc/nginx/hosts/{}".format(config[profile]["template_ngx"].replace("PRJ_NAME", project_name))
+    
     if 'init_script' in config[profile] and config[profile]["init_script"] != "":
         init_script = config[profile]["init_script"].replace("PRJ_NAME", project_name)
     else:
         init_script = None
+    
     if 'git_access' in config[profile] and config[profile]["git_access"] != "":
         git_access = config[profile]["git_access"].replace("PRJ_NAME", project_name)
     else:
         git_access = None
 
     return (
-        config[profile]["host_name"].replace("PRJ_NAME", project_name),
-        config[profile]["dir_name"].replace("PRJ_NAME", project_name),
+        host_name,
+        dir_name,
         git_access,
-        config[profile]["config"].replace("PRJ_NAME", project_name),
+        template_ngx,
         init_script
     )
 
-def create_virtual_host(templ_nginx_config,nginx_config,profile,project_name,host_name):
+def create_virtual_host(templ_nginx_config,nginx_config,profile,project_name,host_name,dir_name):
     """ Create nginx config, docimentroot for web project """
 
     ## checks
@@ -62,21 +72,17 @@ def create_virtual_host(templ_nginx_config,nginx_config,profile,project_name,hos
     s = open(templ_nginx_config, 'r').read()
     s = s.replace('HOST_NAME', host_name)
     s = s.replace('PRJ_NAME', project_name)
+    s = s.replace('DIR_NAME', dir_name)
     f = open(nginx_config, 'w')
     f.write(s)
     f.close()
 
-    if profile == "v5":
-        document_root = "../htdocs/{}/www/".format(project_name)
-    else:
-        document_root = "../htdocs/{}/".format(project_name)
+    document_root = "../htdocs/{}".format(dir_name)
 
     ## create document root
     if not(os.path.isdir(document_root)):
         os.makedirs(document_root)
-
     return document_root
-
 
 def clone_repo(repo,local):
     """ clone repo to local """
@@ -93,31 +99,28 @@ def main():
 
     ## parse args
     args = parse_arguments()
-    p = args.project
+    prj_name = args.project
     profile = args.profile
-    f = args.config.read()
+    config = args.config.read()
 
     ## parse config
-    config = parse_config(f,profile,p)
+    config = parse_config(config,profile,prj_name)
 
     ## check config and init config params
     host_name = config[0]
     dir_name = config[1]
     git_access = config[2]
-    template_nginx_name = config[3]
+    template_ngx = config[3]
     init_script = config[4]
-    prj_host = "../.nginx/etc/nginx/hosts/{}.conf".format(host_name)
-    templ_prj_host = "../.nginx/etc/nginx/hosts/{}".format(template_nginx_name)
+    ngx = "../.nginx/etc/nginx/hosts/{}.conf".format(host_name)
 
     ## init project
-    if not(os.path.isdir('../htdocs/{}'.format(p))):
+    if not(os.path.isdir('../htdocs/{}'.format(prj_name))):
         if not(git_access == None):
-            clone_repo(git_access,"../htdocs/{}".format(p))
-        else:
-            os.makedirs('../htdocs/{}'.format(dir_name))
+            clone_repo(git_access,"../htdocs/{}".format(prj_name))
 
     ## create virtual host
-    document_root = create_virtual_host(templ_prj_host,prj_host,profile,p,host_name)
+    document_root = create_virtual_host(template_ngx,ngx,profile,prj_name,host_name,dir_name)
 
     ## run init-script
     if not(init_script == None):
@@ -129,7 +132,7 @@ def main():
     subprocess.call(["docker-compose", "restart"])
     print "==============="
     os.chdir('bin/')
-    print 'web project {} is created:\n\t- your config is {}\n\t- your documentroot is {}\nNow open http://{}/'.format(p,os.path.normpath(os.path.realpath(prj_host)), os.path.normpath(os.path.realpath(document_root)), host_name)
+    print 'web project {} is created:\n\t- your config is {}\n\t- your documentroot is {}\nNow open http://{}/'.format(prj_name,os.path.normpath(os.path.realpath(ngx)), os.path.normpath(os.path.realpath(document_root)), host_name)
 
 
 if __name__ == "__main__":

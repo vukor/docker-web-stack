@@ -8,7 +8,7 @@
     },
     "v5": {
         "host_name": "PRJ_NAME.vukor",
-        "dir_name": "PRJ_NAME",
+        "dir_name": "PRJ_NAME/www",
         "git_access": "url/PRJ_NAME",
         "config": "template-v5-conf",
         "init_script": "adx.php"
