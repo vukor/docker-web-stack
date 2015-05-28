@@ -97,16 +97,16 @@ def main():
     ## go to current dir with script
     os.chdir(os.path.dirname(sys.argv[0]))
 
-    ## parse args
+    ## parse cmd arguments
     args = parse_arguments()
     prj_name = args.project
     profile = args.profile
     config = args.config.read()
 
-    ## parse config
+    ## parse json config
     config = parse_config(config,profile,prj_name)
 
-    ## check config and init config params
+    ## check config, init config params
     host_name = config[0]
     dir_name = config[1]
     git_access = config[2]
