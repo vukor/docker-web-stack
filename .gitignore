@@ -20,6 +20,6 @@ htdocs/*
 !htdocs/.keep
 
 ## ignore ssl
-.nginx/etc/nginx/ssl/*
-!.nginx/etc/nginx/ssl/.keep
+#.nginx/etc/nginx/ssl/*
+#!.nginx/etc/nginx/ssl/.keep
 
