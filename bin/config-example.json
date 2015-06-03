@@ -19,6 +19,13 @@
         "git_access": "url/PRJ_NAME",
         "template_ngx": "template-conf",
         "init_script": "wp.php"
+    },
+    "ssl": {
+        "host_name": "PRJ_NAME.vukor",
+        "dir_name": "PRJ_NAME",
+        "git_access": "",
+        "template_ngx": "template-ssl-conf",
+        "init_script": "ssl.php"
     }
 }
 
