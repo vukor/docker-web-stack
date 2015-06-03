@@ -1,0 +1,50 @@
+server {
+    listen       443;
+    server_name  HOST_NAME;
+
+    ## ssl
+    keepalive_timeout   70;
+    ssl             on;
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers         AES128-SHA:AES256-SHA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4;
+    ssl_certificate     /etc/nginx/ssl/ssl.crt;
+    ssl_certificate_key /etc/nginx/ssl/ssl.key;
+    ssl_session_cache   shared:SSL:10m;
+    ssl_session_timeout 10m;
+
+    charset utf8;
+    access_log /home/dev/logs/HOST_NAME-ssl.access.log  main;
+    error_log /home/dev/logs/HOST_NAME-ssl.error.log  warn;
+
+    root  /home/dev/htdocs/DIR_NAME;
+    index  index.php index.html index.htm;
+
+    ## rewrite rules
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    ## php settings
+    location ~ \.php$ {
+        fastcgi_pass   php:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+
+    ## rewrite for htester
+    location /htester/ {
+        ## exact rewrite /mod-rewrite/ to ?mod_rewrite_test
+        rewrite ^/htester/(.*)mod-rewrite/$ /htester/index.php?mod_rewrite_test last;
+
+        ## Next 2 lines is for total redirect, exclude existing files. Not required for htester
+        ## rest is goes to index.php, but it unnecessary.
+        ## try_files $uri $uri/ /htester/index.php$is_args$args;
+    }
+
+    # deny view .htaccess
+    location ~ /\.ht {
+        deny  all;
+    }
+}
+

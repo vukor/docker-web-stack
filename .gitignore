@@ -10,6 +10,7 @@ backup/*
 .nginx/etc/nginx/hosts/*
 !.nginx/etc/nginx/hosts/template-conf
 !.nginx/etc/nginx/hosts/template-v5-conf
+!.nginx/etc/nginx/hosts/template-ssl-conf
 
 ## ignore phpstopm metadata
 .idea
@@ -17,4 +18,8 @@ backup/*
 ## ignore www
 htdocs/*
 !htdocs/.keep
+
+## ignore ssl
+.nginx/etc/nginx/ssl/*
+!.nginx/etc/nginx/ssl/.keep
 

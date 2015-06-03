@@ -28,8 +28,10 @@ nginx:
   image: vukor/nginx
   ports:
    - "80:80"
+   - "443:443"
   volumes:
    - .nginx/etc/nginx/hosts:/etc/nginx/hosts
+   - .nginx/etc/nginx/ssl:/etc/nginx/ssl
    - htdocs:/home/dev/htdocs
    - logs:/home/dev/logs
   links:
