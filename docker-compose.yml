@@ -14,6 +14,7 @@ mysql:
     - MYSQL_PASSWORD=test
 php:
   image: vukor/php54
+  dns: 172.20.4.1
   volumes:
     - .php54/etc/php-fpm.conf:/etc/php-fpm.conf
     - .php54/etc/php-fpm.d/:/etc/php-fpm.d/
