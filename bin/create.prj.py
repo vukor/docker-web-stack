@@ -124,7 +124,7 @@ def main():
 
     ## run init-script
     if not(init_script == None):
-        subprocess.call(["php", "init-scripts/{}".format(init_script)])
+        subprocess.call(["../{}".format(init_script)])
 
     ## finish
     print "==============="
