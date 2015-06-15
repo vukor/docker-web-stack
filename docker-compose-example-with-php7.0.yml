@@ -1,0 +1,37 @@
+mysql:
+  image: vukor/mysql55
+  ports:
+   - "3306:3306"
+  volumes:
+    - .mysql55/etc/my.cnf:/etc/my.cnf
+    - logs:/var/log/mysql
+    - backup:/backup
+  environment:
+    - MYSQL_ROOT_PASSWORD=test
+    - MYSQL_LOGIN=test
+    - MYSQL_PASSWORD=test
+php:
+  image: vukor/php70
+  dns: 172.20.4.1
+  volumes:
+    - .php70/etc/php-fpm.conf:/opt/remi/php70/root/etc/php-fpm.conf
+    - .php70/etc/php-fpm.d/:/opt/remi/php70/root/etc/php-fpm.d/
+    - .php70/etc/php.ini:/opt/remi/php70/root/etc/php.ini
+    - htdocs:/home/dev/htdocs
+    - logs:/home/dev/logs
+  links:
+    - mysql
+  command: sh -c "/opt/remi/php70/root/usr/sbin/php-fpm --nodaemonize"
+nginx:
+  image: vukor/nginx
+  ports:
+   - "80:80"
+   - "443:443"
+  volumes:
+   - .nginx/etc/nginx/hosts:/etc/nginx/hosts
+   - .nginx/etc/nginx/ssl:/etc/nginx/ssl
+   - htdocs:/home/dev/htdocs
+   - logs:/home/dev/logs
+  links:
+   - php
+
