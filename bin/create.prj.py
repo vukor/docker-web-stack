@@ -136,7 +136,12 @@ def main():
 
     ## run init-script
     if not(init_script == None):
-        subprocess.call(["../{}".format(init_script)])
+        try:
+            subprocess.call(["../{}".format(init_script)])
+        except OSError:
+            print "not found init-script"
+            sys.exit(2)
+
 
     ## finish
     print "==============="
