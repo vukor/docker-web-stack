@@ -67,15 +67,6 @@ def parse_config(file,profile,project_name):
 def create_virtual_host(templ_nginx_config,nginx_config,profile,project_name,host_name,dir_name):
     """ Create nginx config, docimentroot for web project """
 
-    ## checks
-    if os.path.isfile(nginx_config):
-        print "nginx config {} already exists! Exiting..".format(nginx_config)
-        sys.exit(2)
-
-    if not(os.path.isfile(templ_nginx_config)):
-        print "template config {} does not exists! Exiting..".format(templ_nginx_config)
-        sys.exit(2)
-
     s = open(templ_nginx_config, 'r').read()
     s = s.replace('HOST_NAME', host_name)
     s = s.replace('PRJ_NAME', project_name)
@@ -101,7 +92,6 @@ def clone_repo(repo,local):
         print "Not found repo! Exiting.."
         sys.exit(2)
 
-
 def main():
 
     import subprocess
@@ -126,6 +116,19 @@ def main():
     init_script = config[4]
     ngx = "../.nginx/etc/nginx/hosts/{}.conf".format(host_name)
 
+    ## checks - nginx configs, init-script
+    if os.path.isfile(ngx):
+        print "nginx config {} already exists! Exiting..".format(ngx)
+        sys.exit(2)
+
+    if not(os.path.isfile(template_ngx)):
+        print "template config {} does not exists! Exiting..".format(tempate_ngx)
+        sys.exit(2)
+
+    if not(os.path.isfile("../{}".format(init_script))):
+        print "not found init-script {}! Exiting..".format(init_script)
+        sys.exit(2)
+
     ## init project
     if not(os.path.isdir('../htdocs/{}'.format(prj_name))):
         if not(git_access == None):
@@ -136,12 +139,7 @@ def main():
 
     ## run init-script
     if not(init_script == None):
-        try:
             subprocess.call(["../{}".format(init_script)])
-        except OSError:
-            print "not found init-script"
-            sys.exit(2)
-
 
     ## finish
     print "==============="
