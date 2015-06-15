@@ -98,7 +98,12 @@ def main():
     os.chdir(os.path.dirname(sys.argv[0]))
 
     ## parse cmd arguments
-    args = parse_arguments()
+    try:
+        args = parse_arguments()
+    except IOError:
+        print "Not found config file! Exiting.."
+        sys.exit(2)
+    
     prj_name = args.project
     profile = args.profile
     config = args.config.read()
