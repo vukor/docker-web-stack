@@ -12,8 +12,15 @@ def parse_arguments():
     parser.add_argument('--config','-c', type=file, default='config.json', help='config file (default - config.json)')
     parser.add_argument('--profile','-p', type=str, default='default', help='choose profile from config')
     parser.add_argument('project', type=str)
-    
-    return parser.parse_args()
+
+    ## check and return parsing arguments
+    try:
+        args = parser.parse_args()
+    except IOError:
+        print "Not found config file! Exiting.."
+        sys.exit(2)
+
+    return args
 
 def parse_config(file,profile,project_name):
     """ Parse json config, return config parametres """
@@ -87,7 +94,12 @@ def create_virtual_host(templ_nginx_config,nginx_config,profile,project_name,hos
 def clone_repo(repo,local):
     """ clone repo to local """
     import git
-    git.Git().clone(repo,local)
+
+    try:
+        git.Git().clone(repo,local)
+    except git.exc.GitCommandError:
+        print "Not found repo! Exiting.."
+        sys.exit(2)
 
 
 def main():
@@ -98,12 +110,7 @@ def main():
     os.chdir(os.path.dirname(sys.argv[0]))
 
     ## parse cmd arguments
-    try:
-        args = parse_arguments()
-    except IOError:
-        print "Not found config file! Exiting.."
-        sys.exit(2)
-    
+    args = parse_arguments()
     prj_name = args.project
     profile = args.profile
     config = args.config.read()
