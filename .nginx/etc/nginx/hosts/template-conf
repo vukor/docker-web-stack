@@ -36,5 +36,12 @@ server {
 	location ~ /\.ht {
 		deny  all;
 	}
+
+    ## x-sendfile
+    location /x-sendfile/ {
+        internal;
+        alias  /home/dev/htdocs/DIR_NAME;
+    }
+
 }
 
