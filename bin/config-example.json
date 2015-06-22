@@ -10,7 +10,7 @@
         "host_name": "PRJ_NAME.vukor",
         "dir_name": "PRJ_NAME/www",
         "git_access": "url/PRJ_NAME",
-        "template_ngx": "template-v5-conf",
+        "template_ngx": "template-conf",
         "init_script": "bin/init-scripts/adx.php"
     },
     "wp": {
