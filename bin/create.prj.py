@@ -125,9 +125,9 @@ def main():
         print "template config {} does not exists! Exiting..".format(tempate_ngx)
         sys.exit(2)
 
-    if not(os.path.isfile("../{}".format(init_script))):
-        print "not found init-script {}! Exiting..".format(init_script)
-        sys.exit(2)
+    #if not(os.path.isfile("../{}".format(init_script))):
+    #    print "not found init-script {}! Exiting..".format(init_script)
+    #    sys.exit(2)
 
     ## init project
     if not(os.path.isdir('../htdocs/{}'.format(prj_name))):
