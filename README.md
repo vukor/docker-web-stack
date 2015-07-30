@@ -42,16 +42,6 @@ How it's work
     
     `` docker-compose run --rm mysql bash -c 'exec mysql -u $MYSQL_LOGIN -p$MYSQL_PASSWORD -h mysql' ``
 
-8. For backup all databases run:
-    
-    `` docker-compose run --rm mysql bash -c 'exec /opt/backup.dbs.sh' ``
-
-   See your sql-backups in backup/
-
-9. For restore all databases from backup/ run:
-    
-    `` docker-compose run --rm mysql bash -c 'exec /opt/restore.dbs.sh' ``
-
 
 Share dirs
 ===========
@@ -65,6 +55,23 @@ Share dirs
 ``backup - mysql backups``
 
 ``.bin - some scripts, using for run into container``
+
+
+How update images
+============
+
+1. Backup all your databases:
+ 
+    `` docker-compose run --rm mysql bash -c 'exec /opt/backup.dbs.sh' ``
+
+2. Go to project docker-webstack, run:
+
+    `` docker-compose pull ``
+    `` docker-compose up -d ``
+
+3. Restore all your databases:
+ 
+    `` docker-compose run --rm mysql bash -c 'exec /opt/restore.dbs.sh' ``
 
 
 Useful links
