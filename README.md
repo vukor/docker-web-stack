@@ -67,6 +67,7 @@ How update images
 2. Go to project docker-webstack, run:
 
     `` docker-compose pull ``
+    
     `` docker-compose up -d ``
 
 3. Restore all your databases:
