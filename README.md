@@ -42,9 +42,15 @@ How it's work
     
     `` docker-compose run --rm mysql bash -c 'exec mysql -u $MYSQL_LOGIN -p$MYSQL_PASSWORD -h mysql' ``
 
-8. For create/restore db save sql-commands in ./backup/run.sql and run:
+8. For backup all databases run:
     
-    `` docker-compose run --rm mysql bash -c 'exec cat /backup/run.sql | mysql -u $MYSQL_LOGIN -p$MYSQL_PASSWORD -h mysql' ``
+    `` docker-compose run --rm mysql bash -c 'exec /opt/backup.dbs.sh' ``
+
+See your sql-backups in backup/
+
+9. For restore all databases from backup/ run:
+    
+    `` docker-compose run --rm mysql bash -c 'exec /opt/restore.dbs.sh' ``
 
 
 Share dirs
