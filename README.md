@@ -42,7 +42,7 @@ How it's work
 Useful aliases
 ===========
 
-    `` alias _mysql = 'docker-compose run --rm mysql bash -c 'exec mysql -u $MYSQL_LOGIN -p$MYSQL_PASSWORD -h mysql'" ``
+    alias _mysql = 'docker-compose run --rm mysql bash -c 'exec mysql -u $MYSQL_LOGIN -p$MYSQL_PASSWORD -h mysql'"
 
 
 Share dirs
