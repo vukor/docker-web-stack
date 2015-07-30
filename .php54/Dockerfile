@@ -1,4 +1,4 @@
-## Version: 0.5
+## Version: 1.0
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
@@ -21,10 +21,11 @@ RUN yum install tar gcc -y && \
 RUN useradd dev -u 1000
 
 ### php
-RUN yum install php php-cli php-mysql php-mbstring php-gd php-fpm php-mssql php-xml php-tidy ImageMagick which -y
+RUN yum install php php-cli php-mysql php-mbstring php-gd php-fpm php-mssql php-xml php-tidy php-pear php-devel ImageMagick which -y
 COPY ./etc/php-fpm.conf /etc/php-fpm.conf
 COPY ./etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf
 COPY ./etc/php.ini /etc/php.ini
+RUN pecl install xdebug 
 
 ### etc
 ## set timezone
