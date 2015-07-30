@@ -38,9 +38,11 @@ How it's work
     
     `` docker-compose restart [container]``
 
-7. For connect to mysql server run:
-    
-    `` docker-compose run --rm mysql bash -c 'exec mysql -u $MYSQL_LOGIN -p$MYSQL_PASSWORD -h mysql' ``
+
+Useful aliases
+===========
+
+    `` alias _mysql = 'docker-compose run --rm mysql bash -c 'exec mysql -u $MYSQL_LOGIN -p$MYSQL_PASSWORD -h mysql'" ``
 
 
 Share dirs
