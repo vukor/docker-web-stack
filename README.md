@@ -59,20 +59,11 @@ Share dirs
 
 How update images
 ============
+Run:
 
-1. Backup all your databases:
- 
-    `` docker-compose run --rm mysql bash -c 'exec /opt/backup.dbs.sh' ``
+`` ./bin/upgrade.sh ``
 
-2. Go to project docker-webstack, run:
-
-    `` docker-compose pull ``
-    
-    `` docker-compose up -d ``
-
-3. Restore all your databases:
- 
-    `` docker-compose run --rm mysql bash -c 'exec /opt/restore.dbs.sh' ``
+This script backup all your databases, upgrade docker images, run new updated containers and restore all your databases.
 
 
 Useful links
