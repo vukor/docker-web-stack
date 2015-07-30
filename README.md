@@ -62,6 +62,10 @@ Share dirs
 
 ``logs - app logs``
 
+``backup - mysql backups``
+
+``.bin - some scripts, using for run into container``
+
 
 Useful links
 ============
