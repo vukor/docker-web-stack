@@ -46,7 +46,7 @@ How it's work
     
     `` docker-compose run --rm mysql bash -c 'exec /opt/backup.dbs.sh' ``
 
-See your sql-backups in backup/
+   See your sql-backups in backup/
 
 9. For restore all databases from backup/ run:
     
