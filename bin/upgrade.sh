@@ -9,9 +9,7 @@ dir=`dirname ${0}`
 cd ${dir}/../ || exit 2
 
 ## Backup all your databases:
-echo "*** Backing up all your databases.. ***"
-docker-compose run --rm mysql bash -c 'exec /opt/backup.dbs.sh' || exit 1
-echo "** Backing up done. *** "
+./bin/dbs.backup.sh || exit 1
 
 ## Upgrade docker images
 echo "*** Upgrading docker images.. ***"
@@ -29,10 +27,7 @@ docker-compose up -d || exit 1
 echo "*** Docker containers are started. ***"
 
 ## Restore all your databases:
-echo "*** Restoring all your databases.. ***"
-sleep 1
-docker-compose run --rm mysql bash -c 'exec /opt/restore.dbs.sh' || exit 1
-echo "*** Restoring databases done. ***"
+./bin/dbs.restore.sh || exit 1
 
 ## Finish
 echo "** Upgrade succesfully finished. **"
