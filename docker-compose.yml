@@ -8,9 +8,9 @@ mysql:
    - "3306:3306"
   volumes:
     - .mysql55/etc/my.cnf:/etc/my.cnf
-    - logs:/var/log/mysql
+    - ./logs:/var/log/mysql
     - .bin:/opt
-    - backup:/backup
+    - ./backup:/backup
   environment:
     - MYSQL_ROOT_PASSWORD=test
     - MYSQL_LOGIN=test
@@ -23,8 +23,8 @@ php:
     - .php54/etc/php-fpm.conf:/etc/php-fpm.conf
     - .php54/etc/php-fpm.d/:/etc/php-fpm.d/
     - .php54/etc/php.ini:/etc/php.ini
-    - htdocs:/home/dev/htdocs
-    - logs:/home/dev/logs
+    - ./htdocs:/home/dev/htdocs
+    - ./logs:/home/dev/logs
   links:
     - mysql
     - postfix
@@ -38,8 +38,8 @@ nginx:
   volumes:
    - .nginx/etc/nginx/hosts:/etc/nginx/hosts
    - .nginx/etc/nginx/ssl:/etc/nginx/ssl
-   - htdocs:/home/dev/htdocs
-   - logs:/home/dev/logs
+   - ./htdocs:/home/dev/htdocs
+   - ./logs:/home/dev/logs
   links:
    - php
 
