@@ -9,6 +9,7 @@ dbs=`ls mysql.*.sql.gz | cut -d . -f 2`
 ## backup dbs
 cd /backup || exit 1
 for db in ${dbs}; do
+  ${cmd} -e "drop database ${db};"
   ${cmd} -e "create database ${db};"
   zcat mysql.${db}.sql.gz | ${cmd} ${db}
 done
