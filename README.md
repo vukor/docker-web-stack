@@ -38,10 +38,41 @@ How it's work
     
     `` docker-compose restart [container]``
 
-7. For connect to mysql run:
-    
-    `` ./bin/mysql.sh ``
+How manage databases
+===========
 
+1. For connect to mysql service run:
+    
+    `` make db-cmd ``
+
+2. For backup all your databases run:
+    
+    `` make db-backup ``
+
+    Your databases will be located in backup/ directory.
+
+3. For restore all databases from backup/ directory to mysql service run:
+    
+    `` make db-restore ``
+
+How update images
+============
+Run:
+
+`` make upgrade ``
+
+This command backup all your databases, upgrade docker images, run new updated containers and restore all your databases.
+
+How manage docker images
+===========
+
+1. For build all images in project run:
+    
+    `` make build ``
+
+2. For push all images in project run:
+    
+    `` make push ``
 
 Share dirs
 ===========
@@ -55,16 +86,6 @@ Share dirs
 ``backup - mysql backups``
 
 ``.bin - some scripts, using for run into container``
-
-
-How update images
-============
-Run:
-
-`` ./bin/upgrade.sh ``
-
-This script backup all your databases, upgrade docker images, run new updated containers and restore all your databases.
-
 
 Useful links
 ============
