@@ -16,3 +16,8 @@ build:
 push:
 	bin/images.push.sh
 
+start:
+	docker-compose start
+
+up:
+	docker-compose up -d
