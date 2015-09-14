@@ -19,5 +19,11 @@ push:
 start:
 	docker-compose start
 
+stop:
+	docker-compose stop
+
+restart:
+	docker-compose stop
+	docker-compose start
 up:
 	docker-compose up -d
