@@ -1,4 +1,4 @@
-## Version: 0.4
+## Version: 0.5
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
@@ -20,6 +20,9 @@ RUN cp -f /usr/share/zoneinfo/Asia/Novosibirsk /etc/localtime
 
 ### volumes
 VOLUME ["/var/log/mysql/"]
+
+## copy mysql backup/restore scripts
+COPY ./opt /opt
 
 ### main
 COPY docker-entrypoint.sh /entrypoint.sh

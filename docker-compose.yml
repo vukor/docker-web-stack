@@ -9,7 +9,6 @@ mysql:
   volumes:
     - .mysql55/etc/my.cnf:/etc/my.cnf
     - ./logs:/var/log/mysql
-    - .bin:/opt
     - ./backup:/backup
   environment:
     - MYSQL_ROOT_PASSWORD=test
