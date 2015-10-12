@@ -85,8 +85,6 @@ Share dirs
 
 ``backup - mysql backups``
 
-``.bin - some scripts, using for run into container``
-
 Useful links
 ============
   - http://docs.docker.com/compose/
