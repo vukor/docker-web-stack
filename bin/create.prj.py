@@ -47,7 +47,7 @@ def parse_config(file,profile,project_name):
         template_ngx = "../.nginx/etc/nginx/hosts/{}".format(config[profile]["template_ngx"].replace("PRJ_NAME", project_name))
     
     if 'init_script' in config[profile] and config[profile]["init_script"] != "":
-        init_script = config[profile]["init_script"].replace("PRJ_NAME", project_name)
+        init_script = config[profile]["init_script"].replace("PRJ_NAME", project_name).replace("DIR_NAME", dir_name)
     else:
         init_script = None
     
@@ -139,7 +139,13 @@ def main():
 
     ## run init-script
     if not(init_script == None):
-            subprocess.call(["../{}".format(init_script)])
+        first_space_pos = init_script.find(' ')
+        if (first_space_pos):
+            init_args = init_script[first_space_pos+1:]
+            init_script = init_script[0:first_space_pos]
+        else:
+            init_args = ''
+        subprocess.call(["../{}".format(init_script), init_args])
 
     ## finish
     print "==============="

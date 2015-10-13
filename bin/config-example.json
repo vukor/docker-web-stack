@@ -4,21 +4,21 @@
         "dir_name": "PRJ_NAME",
         "git_access": "url/PRJ_NAME",
         "template_ngx": "template-conf",
-        "init_script": "bin/init-scripts/adx.php"
+        "init_script": "bin/init-scripts/adx.php --prj-name=PRJ_NAME --usr-name=vukor"
     },
     "v5": {
         "host_name": "PRJ_NAME.vukor",
         "dir_name": "PRJ_NAME/www",
         "git_access": "url/PRJ_NAME",
         "template_ngx": "template-conf",
-        "init_script": "bin/init-scripts/adx.php"
+        "init_script": "bin/init-scripts/adx.php --prj-name=PRJ_NAME --usr-name=vukor"
     },
     "wp": {
         "host_name": "PRJ_NAME.vukor",
         "dir_name": "PRJ_NAME",
         "git_access": "url/PRJ_NAME",
         "template_ngx": "template-conf",
-        "init_script": "bin/init-scripts/wp.php"
+	"init_script": "bin/init-scripts/adx.php --prj-name=PRJ_NAME --usr-name=vukor"
     },
     "ssl": {
         "host_name": "PRJ_NAME.vukor",
