@@ -11,6 +11,7 @@ backup/*
 !.nginx/etc/nginx/hosts/template-conf
 !.nginx/etc/nginx/hosts/template-v5-conf
 !.nginx/etc/nginx/hosts/template-ssl-conf
+!.nginx/etc/nginx/hosts/default.conf
 
 ## ignore phpstopm metadata
 .idea
