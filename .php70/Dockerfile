@@ -23,6 +23,7 @@ RUN yum -y --enablerepo=remi,remi-test install php70 \
 	php70-php-mssql \
 	php70-php-xml \
 	php70-php-tidy \
+	php70-php-mcrypt \
 	ImageMagick \
 	which
 COPY ./etc/php-fpm.conf /etc/php-fpm.conf
