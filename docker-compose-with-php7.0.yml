@@ -5,9 +5,9 @@ mysql:
    - "3306:3306"
   volumes:
     - .mysql55/etc/my.cnf:/etc/my.cnf
-    - logs:/var/log/mysql
+    - ./logs:/var/log/mysql
     - .bin:/opt
-    - backup:/backup
+    - ./backup:/backup
   environment:
     - MYSQL_ROOT_PASSWORD=test
     - MYSQL_LOGIN=test
@@ -21,8 +21,8 @@ php:
     - .php70/etc/php-fpm.conf:/etc/opt/remi/php70/php-fpm.conf
     - .php70/etc/php-fpm.d/:/etc/opt/remi/php70/php-fpm.d/
     - .php70/etc/php.ini:/etc/opt/remi/php70/php.ini
-    - htdocs:/home/dev/htdocs
-    - logs:/home/dev/logs
+    - ./htdocs:/home/dev/htdocs
+    - ./logs:/home/dev/logs
   links:
     - mysql
   command: sh -c "/opt/remi/php70/root/usr/sbin/php-fpm --nodaemonize"
@@ -35,8 +35,8 @@ nginx:
   volumes:
    - .nginx/etc/nginx/hosts:/etc/nginx/hosts
    - .nginx/etc/nginx/ssl:/etc/nginx/ssl
-   - htdocs:/home/dev/htdocs
-   - logs:/home/dev/logs
+   - ./htdocs:/home/dev/htdocs
+   - ./logs:/home/dev/logs
   links:
    - php
 
