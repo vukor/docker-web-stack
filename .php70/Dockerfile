@@ -1,4 +1,4 @@
-## Version: 0.2
+## Version: 0.3
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
@@ -24,6 +24,7 @@ RUN yum -y --enablerepo=remi,remi-test install php70 \
 	php70-php-xml \
 	php70-php-tidy \
 	php70-php-mcrypt \
+	php70-php-pecl-mysql \
 	ImageMagick \
 	which
 COPY ./etc/php-fpm.conf /etc/php-fpm.conf
