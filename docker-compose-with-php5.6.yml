@@ -1,0 +1,41 @@
+mysql:
+  image: vukor/mysql55
+  container_name: mysql
+  ports:
+   - "3306:3306"
+  volumes:
+    - .mysql55/etc/my.cnf:/etc/my.cnf
+    - ./logs:/var/log/mysql
+    - ./backup:/backup
+  environment:
+    - MYSQL_ROOT_PASSWORD=test
+    - MYSQL_LOGIN=test
+    - MYSQL_PASSWORD=test
+php:
+  image: vukor/php56
+  container_name: php
+  dns:
+    - 172.20.4.1
+  volumes:
+    - .php56/etc/php-fpm.conf:/etc/php-fpm.conf
+    - .php56/etc/php-fpm.d/:/etc/php-fpm.d/
+    - .php56/etc/php.ini:/etc/php.ini
+    - ./htdocs:/home/dev/htdocs
+    - ./logs:/home/dev/logs
+  links:
+    - mysql
+  command: sh -c "LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so /usr/sbin/php-fpm --nodaemonize"
+nginx:
+  image: vukor/nginx
+  container_name: nginx
+  ports:
+   - "80:80"
+   - "443:443"
+  volumes:
+   - .nginx/etc/nginx/hosts:/etc/nginx/hosts
+   - .nginx/etc/nginx/ssl:/etc/nginx/ssl
+   - ./htdocs:/home/dev/htdocs
+   - ./logs:/home/dev/logs
+  links:
+   - php
+
