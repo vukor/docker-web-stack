@@ -23,7 +23,6 @@ stop:
 	docker-compose stop
 
 restart:
-	docker-compose stop
-	docker-compose start
+	docker-compose restart
 up:
 	docker-compose up -d
