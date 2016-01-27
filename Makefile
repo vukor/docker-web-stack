@@ -26,3 +26,7 @@ restart:
 	docker-compose restart
 up:
 	docker-compose up -d
+
+clean:
+	docker ps -aq | xargs docker rm
+
