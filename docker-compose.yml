@@ -43,4 +43,9 @@ nginx:
    - ./logs:/home/dev/logs
   links:
    - php
+dns:
+  image: vukor/dnsmasq
+  container_name: dns
+  ports:
+   - "127.0.0.2:53:53/udp"
 
