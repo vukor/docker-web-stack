@@ -8,7 +8,7 @@ How it's work
 
 1. Download project:
 
-    `` git clone https://vukor@github.com/vukor/docker-web-stack.git``
+    `` git clone https://vukor@github.com/vukor/docker-web-stack.git ``
 
 2. Install docker and docker-compose on your system
 
@@ -37,6 +37,10 @@ How it's work
     `` docker-compose start [container]``
     
     `` docker-compose restart [container]``
+
+7. Add to /etc/resolv.conf in head:
+
+    `` nameserver 127.0.0.2 ``
 
 How manage databases
 ===========
