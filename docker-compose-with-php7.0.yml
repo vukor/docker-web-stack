@@ -8,6 +8,7 @@ mysql:
     - ./logs:/var/log/mysql
     - .bin:/opt
     - ./backup:/backup
+    - data:/var/lib/mysql
   environment:
     - MYSQL_ROOT_PASSWORD=test
     - MYSQL_LOGIN=test
