@@ -6,21 +6,21 @@ This is docker projects for run web apps as containers
 How it's work
 ===========
 
-1. Download project:
+* Download project:
 
     `` git clone https://vukor@github.com/vukor/docker-web-stack.git ``
 
-2. Install docker and docker-compose on your system
+* Install docker and docker-compose on your system
 
-3. [ OPTIONAL ] Change the docker-compose.yml. For example, you can change MYSQL_ROOT_PASSWORD or change php version (default php 5.6).
+* [ OPTIONAL ] Change the docker-compose.yml. For example, you can change MYSQL_ROOT_PASSWORD or change php version (default php 5.6).
 
-4. Create and start containers:
+* Create and start containers:
     
     `` cd docker-web-stack/ ``
 
     `` docker-compose up -d ``
 
-5. Create your first virtual host:
+* Create your first virtual host:
 
     `` ./bin/create.prj.py PRJNAME `` (then documentroot is ./htdocs/PRJNAME/)
 
@@ -30,7 +30,7 @@ How it's work
 
     After that put web files to documentroot
 
-6. For stop, start, restart containers run:
+* For stop, start, restart containers run:
     
     `` docker-compose stop [container]``
     
@@ -38,7 +38,9 @@ How it's work
     
     `` docker-compose restart [container]``
 
-7. Add to /etc/resolv.conf in head:
+* Add zones (if you need) to files in directory .dnsmasq/zones
+
+* Add to /etc/resolv.conf in head:
 
     `` nameserver 127.0.0.2 ``
 
