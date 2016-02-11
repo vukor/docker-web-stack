@@ -1,6 +1,7 @@
 postfix:
   image: vukor/postfix
   container_name: postfix
+  restart: always
 mysql:
   image: vukor/mysql55
   container_name: mysql
@@ -15,6 +16,7 @@ mysql:
     - MYSQL_ROOT_PASSWORD=test
     - MYSQL_LOGIN=test
     - MYSQL_PASSWORD=test
+  restart: always
 php:
   image: vukor/php54
   container_name: php
@@ -30,6 +32,7 @@ php:
     - mysql
     - postfix
   command: sh -c "LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so /usr/sbin/php-fpm --nodaemonize"
+  restart: always
 nginx:
   image: vukor/nginx
   container_name: nginx
@@ -43,9 +46,11 @@ nginx:
    - ./logs:/home/dev/logs
   links:
    - php
+  restart: always
 dns:
   image: vukor/dnsmasq
   container_name: dns
   ports:
    - "127.0.0.2:53:53/udp"
+  restart: always
 
