@@ -65,6 +65,8 @@ services:
     restart: always
     
   dns:
+    build:
+      context: .dnsmasq
     image: vukor/dnsmasq
     container_name: dns
     ports:
