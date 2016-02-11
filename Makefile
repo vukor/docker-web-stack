@@ -28,5 +28,5 @@ up:
 	docker-compose up -d
 
 clean:
-	docker ps -aq | xargs docker rm
+	docker ps --all --format="{{.ID}}" | xargs docker rm --force
 
