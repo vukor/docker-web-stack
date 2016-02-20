@@ -14,9 +14,13 @@ How it's work
 
 * [ OPTIONAL ] Change the docker-compose.yml. For example, you can change MYSQL_ROOT_PASSWORD or change php version (default php 5.6).
 
-* Create and start containers:
+* Create volume data:
     
     `` cd docker-web-stack/ ``
+    
+    `` docker volume create --name data ``
+
+* Create and start containers:
 
     `` docker-compose up -d ``
 
