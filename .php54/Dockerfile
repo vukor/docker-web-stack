@@ -1,6 +1,9 @@
-## Version: 1.0
+## Version: 1.1
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
+
+## import centos 6 base key
+RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
 ### repo
 ## needs to install php 5.4

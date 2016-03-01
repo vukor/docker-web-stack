@@ -2,6 +2,9 @@
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
+## import centos 6 base key
+RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
 ## repo
 # needs to install mysql 5.5
 RUN yum install wget -y && wget -q -O - https://www.atomicorp.com/installers/atomic | sed 's/!\ $NON_INT/$NON_INT/' | sh

@@ -1,6 +1,9 @@
-## Version: 0.1
+## Version: 0.2
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
+
+## import centos 6 base key
+RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
 ## create user dev
 RUN useradd dev -u 1000
