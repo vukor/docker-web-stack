@@ -72,4 +72,3 @@ services:
     ports:
       - "127.0.0.2:53:53/udp"
     restart: always
-
