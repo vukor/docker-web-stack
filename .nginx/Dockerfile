@@ -1,4 +1,4 @@
-## Version: 0.5
+## Version: 0.6
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
@@ -9,10 +9,13 @@ RUN useradd dev -u 1000
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
 ## nginx
-RUN rpm --import http://nginx.org/keys/nginx_signing.key && \
+RUN yum update -y && \
+    yum upgrade -y && \
+    rpm --import http://nginx.org/keys/nginx_signing.key && \
     rpm -Uvh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm && \
     sed -i 's/gpgcheck=0/gpgcheck=1/' /etc/yum.repos.d/nginx.repo && \
-    yum install nginx which -y 
+    yum install nginx which -y && \
+    yum clean all
 COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
 
 ### etc
