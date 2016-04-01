@@ -30,9 +30,9 @@ RUN yum -y --enablerepo=remi,remi-test install php70 \
 	php70-php-pecl-mysql \
 	ImageMagick \
 	which
-COPY ./etc/php-fpm.conf /etc/php-fpm.conf
-COPY ./etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf
-COPY ./etc/php.ini /etc/php.ini
+COPY ./etc/php-fpm.conf /etc/opt/remi/php70/php-fpm.conf
+COPY ./etc/php-fpm.d/www.conf /etc/opt/remi/php70/php-fpm.d/www.conf
+COPY ./etc/php.ini /etc/opt/remi/php70/php.ini
 
 ### etc
 ## set timezone

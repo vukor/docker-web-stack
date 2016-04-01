@@ -19,8 +19,6 @@ php:
   dns:
     - 172.20.4.1
   volumes:
-    - .php70/etc/php-fpm.conf:/etc/opt/remi/php70/php-fpm.conf
-    - .php70/etc/php-fpm.d/:/etc/opt/remi/php70/php-fpm.d/
     - .php70/etc/php.ini:/etc/opt/remi/php70/php.ini
     - ./htdocs:/home/dev/htdocs
     - ./logs:/home/dev/logs
