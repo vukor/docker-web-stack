@@ -21,6 +21,10 @@ How it's work
     
     `` docker volume create --name data ``
 
+* Download images:
+
+    `` docker-compose pull ``
+
 * Create and start containers:
 
     `` docker-compose up -d ``
