@@ -15,7 +15,7 @@ services:
   mysql:
     build:
       context: .mysql55
-    image: vukor/mysql55
+    image: vukor/mysql:5.5
     container_name: mysql
     ports:
       - "3306:3306"
@@ -31,7 +31,7 @@ services:
   php:
     build:
       context: .php54
-    image: vukor/php54
+    image: vukor/php:5.4
     container_name: php
     dns:
       - 172.20.4.1
