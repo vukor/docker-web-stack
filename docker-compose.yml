@@ -7,11 +7,13 @@ volumes:
 services:
   postfix:
     image: vukor/postfix
+    build: .postfix
     container_name: postfix
     restart: always
     
   mysql:
     image: vukor/mysql:5.5
+    build: .mysql55
     container_name: mysql
     ports:
       - "3306:3306"
@@ -26,6 +28,7 @@ services:
     
   php:
     image: vukor/php:5.4
+    build: .php54
     container_name: php
     dns:
       - 172.20.4.1
@@ -38,6 +41,7 @@ services:
     
   nginx:
     image: vukor/nginx
+    build: .nginx
     container_name: nginx
     ports:
       - "80:80"
@@ -54,6 +58,7 @@ services:
     
   dns:
     image: vukor/dnsmasq
+    build: .dnsmasq
     container_name: dns
     ports:
       - "127.0.0.2:53:53/udp"
