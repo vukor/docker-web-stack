@@ -1,10 +1,10 @@
 docker-web-stack
 ===========
 
-This is docker projects for run web apps as containers
+This is docker projects for run web apps as containers - nginx, php, mysql, postfix, dnsmasq.
 
 
-How it's work
+Necessary steps
 ===========
 
 * Download project:
@@ -21,15 +21,22 @@ How it's work
     
     `` docker volume create --name data ``
 
-* Download images:
-
-    `` docker-compose pull ``
-
 * Create and start containers:
 
-    `` docker-compose up -d ``
+    `` docker-compose up --no-build -d ``
 
-* Create your first virtual host:
+* Go to your http:/localhost/
+  You must see response from nginx - "410 Gone"
+
+* If you use OSX (like me) - you also have to create alias 127.0.0.2 on loopback:
+
+    `` sudo ifconfig lo0 127.0.0.2 alias ``
+
+
+Manage your projects
+===========
+
+* You can create your first virtual host:
 
     `` ./bin/create.prj.py PRJNAME `` (then documentroot is ./htdocs/PRJNAME/)
 
@@ -37,24 +44,51 @@ How it's work
 
     `` ./bin/create.prj.py -v5 PRJNAME `` (then documentroot is ./htdocs/PRJNAME/www/)
 
-    After that put web files to documentroot
+    After that put your web files to documentroot
 
-* For stop, start, restart containers run:
+
+Manage your containers
+===========
+
+* For stop, start, restart, up and build for all or one of project container you have to run:
     
     `` docker-compose stop [container]``
     
     `` docker-compose start [container]``
     
     `` docker-compose restart [container]``
+    
+    `` docker-compose up -d [container]``
+    
+    `` docker-compose build [container]``
 
-* Add zones (if you need) to files in directory .dnsmasq/zones
 
-* Add to /etc/resolv.conf in head:
+Manage your DNS zones
+===========
+
+* For exampple, you create project my-first-project.ru. But for working in your browser you need that domain myp-first-project.ru is resolve to 127.0.0.1
+
+* For working this create your first zone:
+
+    ``
+    echo "address=/my-first-project.ru/127.0.0.1" > .dnsmasq/zones/my-first-project.ru
+    ``
+
+* Build and up image dnsmasq:
+    
+    ``
+    docker-compose build dns
+    docker-compose up -d dns
+    ``
+
+* And add to /etc/resolv.conf before your real nameservers:
 
     `` nameserver 127.0.0.2 ``
 
+* Now you must resolve my-first-project.ru. and \*.my-first-project.ru. to 127.0.0.1
 
-How manage databases
+
+Manage databases
 ===========
 
 1. For connect to mysql service run:
@@ -72,25 +106,13 @@ How manage databases
     `` make db-restore ``
 
 
-How update images
+How update images (move it crontab in docker soon)
 ============
 Run:
 
 `` make upgrade ``
 
 This command backup all your databases, upgrade docker images, run new updated containers and restore all your databases.
-
-
-How manage docker images
-===========
-
-1. For build all images in project run:
-    
-    `` make build ``
-
-2. For push all images in project run:
-    
-    `` make push ``
 
 
 Share dirs
