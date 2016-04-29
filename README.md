@@ -81,7 +81,7 @@ Manage your DNS zones
     docker-compose up -d dns
     ``
 
-* And add to /etc/resolv.conf before your real nameservers:
+* And add to /etc/resolv.conf after your real nameservers:
 
     `` nameserver 127.0.0.2 ``
 
