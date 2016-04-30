@@ -85,7 +85,7 @@ Manage your DNS zones
 
     `` nameserver 127.0.0.2 ``
 
-* Now you must resolve my-first-project.ru. and \*.my-first-project.ru. to 127.0.0.1
+* Now you can resolve my-first-project.ru. and \*.my-first-project.ru. to 127.0.0.1
 
 
 Manage databases
