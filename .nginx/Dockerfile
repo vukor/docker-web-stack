@@ -1,31 +1,32 @@
-## Version: 0.6
+## Version: 0.1
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
-## create user dev
-RUN useradd dev -u 1000
-
-## import centos 6 base key
+## Import centos 6 base key
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
-## nginx
-RUN yum update -y && \
-    yum upgrade -y && \
-    rpm --import http://nginx.org/keys/nginx_signing.key && \
-    rpm -Uvh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm && \
-    sed -i 's/gpgcheck=0/gpgcheck=1/' /etc/yum.repos.d/nginx.repo && \
-    yum install nginx which -y && \
-    yum clean all
-COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
+## Install epel repo
+RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
+    yum install ansible19 git -y
 
-### etc
-## set timezone
-RUN cp -f /usr/share/zoneinfo/Asia/Novosibirsk /etc/localtime
+## Deploy nginx over ansible from project https://github.com/vukor/ansible-deploy-web-stack
+## (we using in prod ansible; docker not yet)
+RUN cd /tmp/ && \
+    git clone https://github.com/vukor/ansible-deploy-web-stack && \
+    cd /tmp/ansible-deploy-web-stack/ && \
+    echo 'local' >> inventory/hosts && \
+    ansible-playbook playbook/setup.yml -t unix,user,nginx --connection=local && \
+    cd / && rm -rf /tmp/ansible-deploy-web-stack/ && \
+    echo 'clean_requirements_on_remove=1' >> /etc/yum.conf && \
+    yum remove ansible git epel-release -y && \
+    yum clean all
+
+## Copy nginx config to image
+COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
 
 ### volumes
 ## nginx virtual hosts
 VOLUME ["/etc/nginx/hosts/"]
-
 ## web
 VOLUME ["/home/dev/logs/"]
 VOLUME ["/home/dev/htdocs/"]
