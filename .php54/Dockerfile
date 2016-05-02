@@ -1,16 +1,31 @@
-## Version: 1.1
+## Version: 0.1
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
-## import centos 6 base key
+## Import centos 6 base key
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
-### repo
-## needs to install php 5.4
-RUN yum install wget -y && wget -q -O - https://www.atomicorp.com/installers/atomic | sed 's/!\ $NON_INT/$NON_INT/' | sh
+## Install epel repo
+RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
+    yum install ansible1.9 git -y
 
-### build, configure libiconv 1.x (needs for php)
-RUN yum install tar gcc -y && \
+## Deploy nginx over ansible from project https://github.com/vukor/ansible-deploy-web-stack
+## (we using in prod ansible; docker not yet)
+RUN cd /tmp/ && \
+    git clone https://github.com/vukor/ansible-deploy-web-stack && \
+    cd /tmp/ansible-deploy-web-stack/ && \
+    echo 'local' >> inventory/hosts && \
+    sed -i 's/php_version: 5.6/php_version: 5.4/' inventory/group_vars/all.yml && \
+    sed -i 's/prj_group: www/prj_group: dev/' inventory/group_vars/all.yml && \
+    ansible-playbook playbook/setup.yml -t unix,remi,user,php --connection=local && \
+    cd / && rm -rf /tmp/ansible-deploy-web-stack/
+#    echo 'clean_requirements_on_remove=1' >> /etc/yum.conf && \
+#    yum remove ansible git epel-release -y && \
+#    yum clean all
+
+## DEBUG!
+## build, configure libiconv 1.x (needs for php)
+RUN yum install tar gcc wget -y && \
     cd /tmp && \
     wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz && \
     tar -xvzf ./libiconv-1.14.tar.gz && \
@@ -19,21 +34,13 @@ RUN yum install tar gcc -y && \
     make && make install && \
     cd /tmp && rm -rf /tmp/libiconv* && \
     echo "export LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so" >> /etc/bashrc
+RUN yum --enablerepo=remi install php-pear php-devel -y && \
+    pecl install xdebug 
 
-### create, configure user dev
-RUN useradd dev -u 1000
-
-### php
-RUN yum install php php-cli php-mysqlnd php-mbstring php-gd php-fpm php-mssql php-xml php-tidy php-pear php-devel php-mcrypt ImageMagick which -y
+### Copy configs
 COPY ./etc/php-fpm.conf /etc/php-fpm.conf
 COPY ./etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf
 COPY ./etc/php.ini /etc/php.ini
-RUN pecl install xdebug 
-
-### etc
-## set timezone
-RUN cp -f /usr/share/zoneinfo/Asia/Novosibirsk /etc/localtime
-RUN ln -s /usr/bin/identify /usr/local/bin/identify && ln -s /usr/bin/convert /usr/local/bin/convert
 
 ### volumes
 ## php-fpm

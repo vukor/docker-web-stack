@@ -15,10 +15,10 @@ RUN cd /tmp/ && \
     git clone https://github.com/vukor/ansible-deploy-web-stack && \
     cd /tmp/ansible-deploy-web-stack/ && \
     echo 'local' >> inventory/hosts && \
-    sed -i 's/php_version: 5.6/php_version: 7.0/' inventory/group_vars/all.yml && \
+    sed -i 's/php_version: 5.6/php_version: 5.5/' inventory/group_vars/all.yml && \
     sed -i 's/prj_group: www/prj_group: dev/' inventory/group_vars/all.yml && \
-    ansible-playbook playbook/setup.yml -t unix,repo,user,php --connection=local
-#    cd / && rm -rf /tmp/ansible-deploy-web-stack/ && \
+    ansible-playbook playbook/setup.yml -t unix,remi,user,php --connection=local && \
+    cd / && rm -rf /tmp/ansible-deploy-web-stack/
 #    echo 'clean_requirements_on_remove=1' >> /etc/yum.conf && \
 #    yum remove ansible git epel-release -y && \
 #    yum clean all
@@ -34,8 +34,8 @@ RUN yum install tar gcc wget -y && \
     make && make install && \
     cd /tmp && rm -rf /tmp/libiconv* && \
     echo "export LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so" >> /etc/bashrc
-RUN yum --enablerepo=remi-php70 install php-pear php-devel -y && \
-    pecl install xdebug
+RUN yum --enablerepo=remi-php55 install php-pear php-devel -y && \
+    pecl install xdebug 
 
 ### Copy configs
 COPY ./etc/php-fpm.conf /etc/php-fpm.conf
