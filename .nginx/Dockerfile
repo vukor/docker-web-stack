@@ -7,7 +7,7 @@ RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
 ## Install epel repo
 RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
-    yum install ansible19 git -y
+    yum install ansible1.9 git -y
 
 ## Deploy nginx over ansible from project https://github.com/vukor/ansible-deploy-web-stack
 ## (we using in prod ansible; docker not yet)
