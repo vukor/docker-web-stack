@@ -18,7 +18,7 @@ RUN cd /tmp/ && \
     sed -i 's/php_version: 5.6/php_version: 5.4/' inventory/group_vars/all.yml && \
     sed -i 's/prj_group: www/prj_group: dev/' inventory/group_vars/all.yml && \
     ansible-playbook playbook/setup.yml -t unix,remi,user,mysql,php --connection=local && \
-    cd / && rm -rf /tmp/ansible-deploy-web-stack/
+    cd / && rm -rf /tmp/ansible-deploy-web-stack/ && \
     echo 'clean_requirements_on_remove=1' >> /etc/yum.conf && \
     yum remove ansible git epel-release -y && \
     yum clean all
