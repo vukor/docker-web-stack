@@ -63,3 +63,13 @@ services:
     ports:
       - "127.0.0.2:53:53/udp"
     restart: always
+
+  cron:
+    image: vukor/cron
+    build: .cron
+    container_name: cron
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/root/docker-web-stack
+    restart: always
+
