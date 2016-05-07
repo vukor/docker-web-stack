@@ -1,25 +1,24 @@
-## Version: 0.5
+## Version: 0.1
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
-## import centos 6 base key
+## Import centos 6 base key
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
-## repo
-# needs to install mysql 5.5
-RUN yum install wget -y && wget -q -O - https://www.atomicorp.com/installers/atomic | sed 's/!\ $NON_INT/$NON_INT/' | sh
+## Install epel repo
+RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
+    yum install ansible1.9 git -y
 
-## mysql
-RUN yum install mysql mysql-server which -y
-RUN mkdir -m 770 /var/log/mysql && chown mysql:mysql /var/log/mysql
-COPY ./etc/my.cnf /etc/my.cnf
-
-## create user dev
-RUN useradd dev -u 1000
-
-### etc
-## set timezone
-RUN cp -f /usr/share/zoneinfo/Asia/Novosibirsk /etc/localtime
+## Deploy mysql role with ansible, we using ansible in prod - not yet docker
+RUN cd /tmp/ && \
+    git clone https://github.com/vukor/ansible-deploy-web-stack && \
+    cd /tmp/ansible-deploy-web-stack/ && \
+    echo 'local' >> inventory/hosts && \
+    ansible-playbook playbook/setup.yml -t unix,remi,mysql --connection=local && \
+    cd / && rm -rf /tmp/ansible-deploy-web-stack/ && \
+    echo 'clean_requirements_on_remove=1' >> /etc/yum.conf && \
+    yum remove ansible git epel-release -y && \
+    yum clean all
 
 ### volumes
 VOLUME ["/var/log/mysql/"]
@@ -32,6 +31,5 @@ COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/libexec/mysqld"]
 
-### allow ports 
+### allow ports
 EXPOSE 3306
-
