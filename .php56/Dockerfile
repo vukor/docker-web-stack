@@ -9,8 +9,7 @@ RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
     yum install ansible1.9 git -y
 
-## Deploy nginx over ansible from project https://github.com/vukor/ansible-deploy-web-stack
-## (we using in prod ansible; docker not yet)
+## Deploy php 5.6 role with ansible, we using ansible in prod - not yet docker
 RUN cd /tmp/ && \
     git clone https://github.com/vukor/ansible-deploy-web-stack && \
     cd /tmp/ansible-deploy-web-stack/ && \
