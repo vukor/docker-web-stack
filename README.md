@@ -108,11 +108,26 @@ Manage databases
 
 How update images (move it crontab in docker soon)
 ============
+
 Run:
 
 `` make upgrade ``
 
 This command backup all your databases, upgrade docker images, run new updated containers and restore all your databases.
+
+
+Manage crontab
+===========
+
+Now you have docker image vukor/cron for run cron jobs.
+
+* For list current cron jobs run:
+
+`` make crontabs ``
+
+* For add or remove cron jobs, you have to edit file ".cron/cron-jobs" and run:
+
+`` docker-compose build cron &% docker-compose up -d cron ``
 
 
 Share dirs
