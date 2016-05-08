@@ -24,6 +24,7 @@ stop:
 
 restart:
 	docker-compose restart
+
 up:
 	docker-compose up -d
 
