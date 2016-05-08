@@ -31,3 +31,6 @@ up:
 clean:
 	docker ps --all --format="{{.ID}}" | xargs docker rm --force
 
+crontabs:
+	docker-compose exec cron crontab -l
+
