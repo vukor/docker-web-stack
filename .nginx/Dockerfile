@@ -19,7 +19,8 @@ RUN cd /tmp/ && \
     cd / && rm -rf /tmp/ansible-deploy-web-stack/ && \
     echo 'clean_requirements_on_remove=1' >> /etc/yum.conf && \
     yum remove ansible git epel-release -y && \
-    yum clean all
+    yum clean all && \
+    rm -rf /var/cache/nginx/*
 
 ## Copy nginx config to image
 COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
