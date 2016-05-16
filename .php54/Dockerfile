@@ -35,6 +35,8 @@ RUN yum install tar gcc wget -y && \
     echo "export LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so" >> /etc/bashrc
 RUN yum --enablerepo=remi install php-pear php-devel -y && \
     pecl install xdebug 
+RUN yum install java -y
+
 
 ### Copy configs
 COPY ./etc/php-fpm.conf /etc/php-fpm.conf
