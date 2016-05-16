@@ -1,0 +1,17 @@
+#!/bin/bash
+
+## Check arg
+if [ -z "$1" ];then
+  echo "You miss php file!"
+  exit 1
+fi
+
+docker run \
+  --net="dockerwebstack_default" \
+  --rm --user dev \
+  -v /:/2tcwjdkgrnVpRPxwYhw7/ \
+  vukor/php:5.4 bash -c \
+  "cd /2tcwjdkgrnVpRPxwYhw7/$(pwd) && php $1"
+
+exit 0
+
