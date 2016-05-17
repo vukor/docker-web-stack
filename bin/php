@@ -6,12 +6,14 @@ if [ -z "$1" ];then
   exit 1
 fi
 
+script=`echo $1 |sed 's/^\//\/2tcwjdkgrnVpRPxwYhw7\//'`
+
 docker run \
   --net="dockerwebstack_default" \
   --rm --user dev \
   -v /:/2tcwjdkgrnVpRPxwYhw7/ \
   vukor/php:5.4 bash -c \
-  "cd /2tcwjdkgrnVpRPxwYhw7/$(pwd) && php $1"
+  "cd /2tcwjdkgrnVpRPxwYhw7/$(pwd) && php ${script}"
 
 exit 0
 
