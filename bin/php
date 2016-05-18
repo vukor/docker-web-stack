@@ -6,14 +6,19 @@ if [ -z "$1" ];then
   exit 1
 fi
 
+## Create new path to script in docker
 script=`echo $1 |sed 's/^\//\/2tcwjdkgrnVpRPxwYhw7\//'`
 
+## Convert 'C:' or other letter to 'c/' (needs for ms windows)
+cur_dir=`echo $(pwd) |sed -r 's/^\w:/\L&/' |sed 's/://'`
+
+## Run php in docker
 docker run \
   --net="dockerwebstack_default" \
   --rm --user dev \
   -v /:/2tcwjdkgrnVpRPxwYhw7/ \
   vukor/php:5.4 bash -c \
-  "cd /2tcwjdkgrnVpRPxwYhw7/$(pwd) && php ${script}"
+  "cd /2tcwjdkgrnVpRPxwYhw7/${cur_dir} && php ${script}"
 
 exit 0
 
