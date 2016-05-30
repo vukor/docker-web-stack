@@ -1,4 +1,4 @@
-## Version: 0.1
+## Version: 0.2
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
