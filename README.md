@@ -21,9 +21,13 @@ Necessary steps
     
     `` docker volume create --name data ``
 
+* Download images:
+
+    `` docker-compose pull ``
+
 * Create and start containers:
 
-    `` docker-compose up --no-build -d ``
+    `` docker-compose up -d ``
 
 * Go to your http:/localhost/
   You must see response from nginx - "410 Gone"
