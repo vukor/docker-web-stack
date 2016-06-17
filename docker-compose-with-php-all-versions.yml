@@ -49,7 +49,7 @@ services:
     restart: always
 
   php70:
-    image: vukor/php70
+    image: vukor/php:7.0
     container_name: php70
     dns:
     - 172.20.4.1
