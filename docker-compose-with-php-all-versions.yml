@@ -1,0 +1,77 @@
+version: "2"
+
+volumes:
+  data:
+    external: true
+
+services:
+  postfix:
+    build:
+      context: .postfix
+    image: vukor/postfix
+    container_name: postfix
+    restart: always
+    
+  mysql:
+    image: vukor/mysql:5.5
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./backup:/backup
+      - data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=test
+      - MYSQL_LOGIN=test
+      - MYSQL_PASSWORD=test
+    restart: always
+    
+  php:
+    image: vukor/php:5.4
+    container_name: php
+    dns:
+      - 172.20.4.1
+    volumes:
+      - ./htdocs:/home/dev/htdocs
+      - ./logs:/home/dev/logs
+    command: sh -c "LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so /usr/sbin/php-fpm --nodaemonize"
+    restart: always
+
+  php56:
+    image: vukor/php:5.6
+    container_name: php56
+    dns:
+      - 172.20.4.1
+    volumes:
+      - ./htdocs:/home/dev/htdocs
+      - ./logs:/home/dev/logs
+    command: sh -c "LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so /usr/sbin/php-fpm --nodaemonize"
+    restart: always
+    
+  nginx:
+    build:
+      context: .nginx
+    image: vukor/nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .nginx/etc/nginx/hosts:/etc/nginx/hosts
+      - .nginx/etc/nginx/ssl:/etc/nginx/ssl
+      - ./htdocs:/home/dev/htdocs
+      - ./logs:/home/dev/logs
+    depends_on:
+      - php
+      - php56
+      - mysql
+    restart: always
+    
+  dns:
+    build:
+      context: .dnsmasq
+    image: vukor/dnsmasq
+    container_name: dns
+    ports:
+      - "127.0.0.2:53:53/udp"
+    restart: always
