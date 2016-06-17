@@ -47,7 +47,19 @@ services:
       - ./logs:/home/dev/logs
     command: sh -c "LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so /usr/sbin/php-fpm --nodaemonize"
     restart: always
-    
+
+  php70:
+    image: vukor/php70
+    container_name: php70
+    dns:
+    - 172.20.4.1
+    volumes:
+      - ./htdocs:/home/dev/htdocs
+      - ./logs:/home/dev/logs
+    links:
+      - mysql
+    command: sh -c "/opt/remi/php70/root/usr/sbin/php-fpm --nodaemonize"
+
   nginx:
     build:
       context: .nginx
@@ -64,6 +76,7 @@ services:
     depends_on:
       - php
       - php56
+      - php70
       - mysql
     restart: always
     
@@ -75,3 +88,13 @@ services:
     ports:
       - "127.0.0.2:53:53/udp"
     restart: always
+
+  cron:
+    image: vukor/cron
+    build: .cron
+    container_name: cron
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/root/docker-web-stack
+    restart: always
+
