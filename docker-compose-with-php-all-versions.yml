@@ -58,7 +58,8 @@ services:
       - ./logs:/home/dev/logs
     links:
       - mysql
-    command: sh -c "/opt/remi/php70/root/usr/sbin/php-fpm --nodaemonize"
+    command: sh -c "LD_PRELOAD=/usr/local/lib/preloadable_libiconv.so /usr/sbin/php-fpm --nodaemonize"
+    restart: always
 
   nginx:
     build:
