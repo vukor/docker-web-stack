@@ -1,4 +1,4 @@
-## Version: 0.2
+## Version: 0.3
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
@@ -11,7 +11,7 @@ RUN curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-com
     chmod +x /usr/local/bin/docker-compose
 
 ## Set TZ
-RUN cat /usr/share/zoneinfo/Asia/Novosibirsk > /etc/localtime
+RUN cat /usr/share/zoneinfo/Asia/Tomsk > /etc/localtime
 
 ## Add cron jobs
 COPY cron-jobs /var/spool/cron/root
