@@ -4,7 +4,7 @@ MAILTO=root
 HOME=/root/docker-web-stack/
 
 @hourly docker-compose pull
-@hourly git pull
+#@hourly git pull
 @hourly bin/dbs.backup.sh
 @hourly docker images | awk '{ if ($1 == "<none>") print $3}' |xargs docker rmi -f
 
