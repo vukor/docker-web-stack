@@ -21,6 +21,8 @@ server {
 
     ## rewrite rules
     location / {
+	rewrite ^/(ru/|en/)?download/.*$ /code/core/download.php;
+	rewrite ^/(ru/|en/)?files/.* /code/core/files.php;
         try_files $uri $uri/ /index.php$is_args$args;
     }
 
