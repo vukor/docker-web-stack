@@ -70,7 +70,7 @@ Manage your containers
 Manage your DNS zones
 ===========
 
-* For exampple, you create project my-first-project.ru. But for working in your browser you need that domain myp-first-project.ru is resolve to 127.0.0.1
+* For example, you create project my-first-project.ru. But for working in your browser you need that domain myp-first-project.ru is resolve to 127.0.0.1
 
 * For working this create your first zone:
 
