@@ -15,6 +15,7 @@ backup/*
 
 ## ignore phpstopm metadata
 .idea
+.pki
 
 ## ignore www
 htdocs/*
