@@ -25,6 +25,9 @@ RUN cd /tmp/ && \
 ## Copy nginx config to image
 COPY ./etc/nginx/nginx.conf /etc/nginx/nginx.conf
 
+## Copy test
+COPY tests /tests
+
 ### volumes
 ## nginx virtual hosts
 VOLUME ["/etc/nginx/hosts/"]

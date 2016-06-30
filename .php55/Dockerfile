@@ -1,4 +1,4 @@
-## Version: 0.2
+## Version: 0.3
 FROM centos:centos6
 MAINTAINER Anton Bugreev <anton@bugreev.ru>
 
@@ -40,6 +40,9 @@ RUN yum --enablerepo=remi-php55 install php-pear php-devel -y && \
 COPY ./etc/php-fpm.conf /etc/php-fpm.conf
 COPY ./etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf
 COPY ./etc/php.ini /etc/php.ini
+
+## Install test
+COPY tests /tests
 
 ### volumes
 ## php-fpm

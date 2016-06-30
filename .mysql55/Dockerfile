@@ -20,16 +20,19 @@ RUN cd /tmp/ && \
     yum remove ansible git epel-release -y && \
     yum clean all
 
-### volumes
+### Volumes
 VOLUME ["/var/log/mysql/"]
 
-## copy mysql backup/restore scripts
+## Copy mysql backup/restore scripts
 COPY ./opt /opt
 
-### main
+## Copy tests
+COPY tests /tests
+
+### Main
 COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/libexec/mysqld"]
 
-### allow ports
+### Allow ports
 EXPOSE 3306
