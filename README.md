@@ -80,10 +80,8 @@ Manage your DNS zones
 
 * Build and up image dnsmasq:
     
-    ``
-    docker-compose build dns
-    docker-compose up -d dns
-    ``
+    `` docker-compose build dns ``
+    `` docker-compose up -d dns ``
 
 * And add to /etc/resolv.conf after your real nameservers:
 
