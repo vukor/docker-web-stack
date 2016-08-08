@@ -60,6 +60,9 @@ services:
     image: vukor/dnsmasq
     build: .dnsmasq
     container_name: dns
+    volumes:
+      - .dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf
+      - .dnsmasq/zones:/etc/dnsmasq.d
     ports:
       - "127.0.0.2:53:53/udp"
     restart: always
