@@ -2,7 +2,6 @@ server {
 	listen       80;
 	server_name  HOST_NAME;
 
-	charset utf8;
 	access_log /home/dev/logs/HOST_NAME.access.log  main;
 	error_log /home/dev/logs/HOST_NAME.error.log  warn;
 

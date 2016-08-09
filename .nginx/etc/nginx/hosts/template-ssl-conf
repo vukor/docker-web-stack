@@ -12,7 +12,6 @@ server {
     ssl_session_cache   shared:SSL:10m;
     ssl_session_timeout 10m;
 
-    charset utf8;
     access_log /home/dev/logs/HOST_NAME-ssl.access.log  main;
     error_log /home/dev/logs/HOST_NAME-ssl.error.log  warn;
 
