@@ -64,7 +64,7 @@ services:
       - .dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf
       - .dnsmasq/zones:/etc/dnsmasq.d
     ports:
-      - "53:53/udp"
+      - "127.0.0.2:53:53/udp"
     restart: always
 
   cron:
