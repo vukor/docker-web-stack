@@ -5,16 +5,19 @@ This is docker projects for run web apps as containers - nginx, php, mysql, post
 
 Docker images statistic
 ===========
+
+* vukor/nginx
+
+[![](https://images.microbadger.com/badges/image/vukor/nginx.svg)](http://microbadger.com/images/vukor/nginx "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/vukor/nginx.svg)](http://microbadger.com/images/vukor/nginx "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/license/vukor/nginx.svg)](http://microbadger.com/images/vukor/nginx "Get your own license badge on microbadger.com")
+
 * vukor/cron
  
 [![](https://images.microbadger.com/badges/image/vukor/cron.svg)](http://microbadger.com/images/vukor/cron "Get your own image badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/vukor/cron.svg)](http://microbadger.com/images/vukor/cron "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/license/vukor/cron.svg)](http://microbadger.com/images/vukor/cron "Get your own license badge on microbadger.com")
 
-* vukor/nginx
-
-[![](https://images.microbadger.com/badges/version/vukor/nginx.svg)](http://microbadger.com/images/vukor/nginx "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/license/vukor/nginx.svg)](http://microbadger.com/images/vukor/nginx "Get your own license badge on microbadger.com")
 
 Necessary steps
 ===========
