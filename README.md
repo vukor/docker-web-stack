@@ -18,6 +18,23 @@ Docker images statistic
 [![](https://images.microbadger.com/badges/version/vukor/php.svg)](http://microbadger.com/images/vukor/php "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/license/vukor/php.svg)](http://microbadger.com/images/vukor/php "Get your own license badge on microbadger.com")
 
+* vukor/mysql
+ 
+[![](https://images.microbadger.com/badges/image/vukor/mysql.svg)](http://microbadger.com/images/vukor/mysql "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/vukor/mysql.svg)](http://microbadger.com/images/vukor/mysql "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/license/vukor/mysql.svg)](http://microbadger.com/images/vukor/mysql "Get your own license badge on microbadger.com")
+
+* vukor/postfix
+ 
+[![](https://images.microbadger.com/badges/image/vukor/postfix.svg)](http://microbadger.com/images/vukor/postfix "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/vukor/postfix.svg)](http://microbadger.com/images/vukor/postfix "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/license/vukor/postfix.svg)](http://microbadger.com/images/vukor/postfix "Get your own license badge on microbadger.com")
+
+* vukor/dnsmasq
+ 
+[![](https://images.microbadger.com/badges/image/vukor/dnsmasq.svg)](http://microbadger.com/images/vukor/dnsmasq "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/vukor/dnsmasq.svg)](http://microbadger.com/images/vukor/dnsmasq "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/license/vukor/dnsmasq.svg)](http://microbadger.com/images/vukor/dnsmasq "Get your own license badge on microbadger.com")
 
 * vukor/cron
  
