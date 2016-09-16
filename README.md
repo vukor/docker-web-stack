@@ -1,7 +1,7 @@
 docker-web-stack
 ===========
 
-This is docker projects for run web apps as containers - nginx, php, mysql, postfix, dnsmasq.
+This is docker project for run web apps as containers.
 
 Docker images statistic
 ===========
